@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Ira L. Barasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a; --dark: #111111; --card: #181818;
+      --border: #2a2a2a; --muted: #3d3d3d; --mid: #888888;
+      --light: #c8c8c8; --white: #f0f0f0;
+      --accent: #d4af6a; --accent-dim: #a07c3a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Syne', sans-serif; background: var(--black); color: var(--white); }
+    nav {
+      background: var(--dark); border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; display: flex; align-items: center;
+      justify-content: space-between; height: 62px; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--white); letter-spacing: 0.06em; text-decoration: none; }
+    .nav-links { display: flex; gap: 0.3rem; }
+    .nav-links a {
+      color: var(--mid); text-decoration: none; font-size: 0.8rem; font-weight: 500;
+      padding: 0.4rem 1rem; border-radius: 3px; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); background: var(--muted); }
+
+    .hero {
+      padding: 5rem 2.5rem 4rem; border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%;
+      background: radial-gradient(ellipse at right, rgba(212,175,106,0.05), transparent 70%);
+      pointer-events: none;
+    }
+    .breadcrumb { font-size: 0.72rem; color: var(--muted); margin-bottom: 1.5rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); font-weight: 600; line-height: 1.08; margin-bottom: 0.5rem; }
+    .hero p { max-width: 520px; color: var(--mid); font-size: 0.88rem; line-height: 1.85; }
+
+    .content { max-width: 1000px; margin: 0 auto; padding: 5rem 2.5rem; }
+
+    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--white); margin-bottom: 0.3rem; font-weight: 600; margin-top: 4rem; }
+    .block-title:first-child { margin-top: 0; }
+    .block-sub { font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 10px; }
+    .block-sub::after { content: ''; width: 40px; height: 1px; background: var(--accent); display: block; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1px; }
+    .info-card { background: var(--dark); padding: 1.6rem 1.5rem; transition: background 0.2s; }
+    .info-card:hover { background: var(--card); }
+    .info-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .info-value { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--white); font-weight: 600; }
+    .info-sub { font-size: 0.8rem; color: var(--mid); margin-top: 0.3rem; line-height: 1.6; }
+
+    .about-body { font-size: 0.9rem; line-height: 1.9; color: var(--mid); }
+    .about-body p { margin-bottom: 1.3rem; }
+    .about-body strong { color: var(--light); font-weight: 500; }
+
+    .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .skill-tag {
+      background: transparent; color: var(--mid); font-size: 0.72rem;
+      padding: 5px 14px; border: 1px solid var(--border); letter-spacing: 0.08em;
+      text-transform: uppercase; transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    footer {
+      border-top: 1px solid var(--border); background: var(--dark);
+      text-align: center; padding: 2.2rem 1.5rem;
+      font-size: 0.78rem; letter-spacing: 0.06em; color: var(--muted); line-height: 2;
+    }
+    footer span { color: var(--mid); }
+
+    @media(max-width:600px){ .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; } nav { padding: 0 1.2rem; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">Ira L. Barasi</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> &rsaquo; About</div>
+    <h1>About</h1>
+    <p>A brief introduction to the person behind the projects and the course that shaped them.</p>
+  </div>
+
+  <div class="content">
+    <h2 class="block-title">Student Profile</h2>
+    <div class="block-sub">Identity</div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-label">Full Name</div>
+        <div class="info-value">Ira L. Barasi</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Program &amp; Section</div>
+        <div class="info-value">BSIT · NS · 2A</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Subject</div>
+        <div class="info-value">Multimedia and Authoring</div>
+        <div class="info-sub">Digital media production, animation, and 3D visualization</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Academic Year</div>
+        <div class="info-value">2025 – 2026</div>
+        <div class="info-sub">Second Year, Second Semester</div>
+      </div>
+    </div>
+
+    <h2 class="block-title">About This Site</h2>
+    <div class="block-sub">Context</div>
+    <div class="about-body">
+      <p>This website serves as a digital portfolio for the <strong>Multimedia and Authoring</strong> course, documenting the creative journey through two major projects: <strong>Rotoscoping</strong> and <strong>3D Rendering</strong>. Each project challenged the application of digital storytelling tools and techniques across multiple weeks of work.</p>
+      <p>The <strong>rotoscoping project</strong> involved splitting reference footage into 5-second clips, rendering them through After Effects, then tracing and editing each frame in Photoshop to produce a stylized animation from live-action movement.</p>
+      <p>The <strong>3D rendering project</strong> focused on building a realistic model of the solar system using industry-standard tools. It explores concepts like lighting, texturing, orbital mechanics, and perspective — all rendered to produce a visually compelling output.</p>
+      <p>Together, these projects reflect a growing proficiency in digital media authoring and a genuine curiosity for the intersection of <strong>art and technology</strong>.</p>
+      <div class="skills-list">
+        <span class="skill-tag">Rotoscoping</span>
+        <span class="skill-tag">3D Rendering</span>
+        <span class="skill-tag">After Effects</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">Animation</span>
+        <span class="skill-tag">Digital Media</span>
+        <span class="skill-tag">Video Production</span>
+        <span class="skill-tag">Solar System Modeling</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Ira L. Barasi &nbsp;|&nbsp; BSIT-NS-2A<br/>
+    <span>All rights reserved. &nbsp;|&nbsp; For educational purposes only.</span>
+  </footer>
+</body>
+</html>
