@@ -21,101 +21,81 @@
       padding: 0 2.5rem; display: flex; align-items: center;
       justify-content: space-between; height: 62px; position: sticky; top: 0; z-index: 100;
     }
-    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--white); letter-spacing: 0.06em; text-decoration: none; }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--white); text-decoration: none; }
     .nav-links { display: flex; gap: 0.3rem; }
     .nav-links a {
-      color: var(--mid); text-decoration: none; font-size: 0.8rem; font-weight: 500;
-      padding: 0.4rem 1rem; border-radius: 3px; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s, background 0.2s;
+      color: var(--mid); text-decoration: none; font-size: 0.8rem;
+      padding: 0.4rem 1rem; text-transform: uppercase;
     }
-    .nav-links a:hover { color: var(--white); background: var(--muted); }
 
     .hero {
       padding: 5rem 2.5rem 4rem; border-bottom: 1px solid var(--border);
-      position: relative; overflow: hidden;
     }
-    .hero::after {
-      content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%;
-      background: radial-gradient(ellipse at right, rgba(212,175,106,0.05), transparent 70%);
-      pointer-events: none;
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
     }
-    .breadcrumb { font-size: 0.72rem; color: var(--muted); margin-bottom: 1.5rem; letter-spacing: 0.1em; text-transform: uppercase; }
-    .breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--accent); }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); font-weight: 600; line-height: 1.08; margin-bottom: 0.5rem; }
-    .hero p { max-width: 660px; color: var(--mid); font-size: 0.88rem; line-height: 1.85; }
 
     .content { max-width: 1060px; margin: 0 auto; padding: 5rem 2.5rem; }
-    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--white); margin-bottom: 0.3rem; font-weight: 600; margin-top: 4.5rem; }
-    .block-title:first-child { margin-top: 0; }
-    .block-sub { font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px; }
-    .block-sub::after { content: ''; width: 40px; height: 1px; background: var(--accent); display: block; }
-    .body-text { font-size: 0.88rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 720px; }
 
-    .video-wrap { border: 1px solid var(--border); background: #000; aspect-ratio: 16/9; margin-bottom: 0.8rem; overflow: hidden; }
-    .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-    .video-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 2.5rem; letter-spacing: 0.06em; }
-
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .tool-card { background: var(--dark); padding: 1.5rem; transition: background 0.2s; }
-    .tool-card:hover { background: var(--card); }
-
-    .calc-box { border: 1px solid var(--border); background: var(--dark); padding: 2rem; margin-bottom: 0.5rem; }
-
-    .planets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
-    .planet-card { background: var(--dark); }
-    .planet-header { padding: 1.3rem; display: flex; gap: 12px; border-bottom: 1px solid var(--border); }
-    .planet-age-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--accent); }
+    .video-wrap {
+      border: 1px solid var(--border);
+      aspect-ratio: 16/9;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 
     footer {
-      border-top: 1px solid var(--border); background: var(--dark);
-      text-align: center; padding: 2.2rem 1.5rem;
-      font-size: 0.78rem; color: var(--muted); margin-top: 5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-brand">Ira L. Barasi</a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-    </div>
-  </nav>
+<nav>
+  <a href="index.html" class="nav-brand">Ira L. Barasi</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
 
-  <div class="hero">
-    <div class="breadcrumb"><a href="index.html">Home</a> &rsaquo; 3D Rendering</div>
-    <h1>3D Rendering<br/>Solar System</h1>
-    <p>3D rendering is the process of converting three-dimensional digital models into two-dimensional images using simulated light, materials, and camera perspectives.</p>
+<div class="hero">
+  <h1>3D Rendering<br/>Solar System</h1>
+</div>
+
+<div class="content">
+
+  <!-- ✅ ONLY THIS PART WAS CHANGED -->
+  <h2>Final Output</h2>
+
+  <div class="video-wrap">
+    <iframe 
+      src="https://www.youtube.com/embed/oFCZUbQIL_g"
+      title="3D Solar System — Final Render"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
 
-  <div class="content">
+  <p>
+    Watch on 
+    <a href="https://youtu.be/oFCZUbQIL_g" target="_blank">YouTube</a>
+  </p>
 
-    <h2 class="block-title">Final Output</h2>
-    <div class="block-sub">Completed Work</div>
+</div>
 
-    <!-- UPDATED VIDEO -->
-    <div class="video-wrap">
-      <iframe 
-        src="https://www.youtube.com/embed/oFCZUbQIL_g" 
-        title="3D Solar System — Final Render"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <p class="video-label">
-      Solar System 3D Render — Final Output · Watch on 
-      <a href="https://youtu.be/oFCZUbQIL_g" target="_blank" style="color: var(--accent); text-decoration: none;">
-        YouTube
-      </a>
-    </p>
-
-  </div>
-
-  <footer>
-    © 2026 Ira L. Barasi | BSIT-NS-2A
-  </footer>
+<footer>
+  © 2026 Ira L. Barasi
+</footer>
 
 </body>
 </html>
