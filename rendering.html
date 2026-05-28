@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -70,6 +70,14 @@
     .tool-name { font-weight: 600; font-size: 0.88rem; color: var(--white); margin-bottom: 0.4rem; letter-spacing: 0.02em; }
     .tool-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.7; }
 
+    /* FIXED INDIVIDUAL PLANET STYLES - 4 COLUMNS */
+    .module-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 4rem; }
+    .module-card { background: var(--dark); border: 1px solid var(--border); padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .module-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--white); margin-bottom: 0.3rem; font-weight: 600; }
+    .module-card p { font-size: 0.8rem; color: var(--mid); margin-bottom: 0.5rem; }
+    .module-card .yt-link { display: inline-block; font-size: 0.72rem; color: var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.8rem; font-weight: 600; transition: color 0.2s; }
+    .module-card .yt-link:hover { color: var(--light); }
+
     /* CALCULATOR */
     .calc-box { border: 1px solid var(--border); background: var(--dark); padding: 2rem; margin-bottom: 0.5rem; }
     .calc-row { display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1rem; }
@@ -120,7 +128,8 @@
     }
     footer span { color: var(--mid); }
 
-    @media(max-width:600px){ .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; } nav { padding: 0 1.2rem; } .calc-row { flex-direction: column; } }
+    @media(max-width:900px){ .module-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:600px){ .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; } nav { padding: 0 1.2rem; } .calc-row { flex-direction: column; } .module-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -141,17 +150,14 @@
 
   <div class="content">
 
-    <!-- FINAL OUTPUT -->
     <h2 class="block-title">Partial Output</h2>
     <div class="block-sub">First Part of the Activity</div>
     <p class="body-text">The 3D rendered solar system animation — featuring all eight planets in orbit around the Sun, with accurate relative sizing, texturing, and lighting simulation.</p>
     <div class="video-wrap">
-      <!-- Replace YOUR_VIDEO_ID with your YouTube video ID (e.g. dQw4w9WgXcQ) -->
       <iframe src="https://www.youtube.com/embed/partialoutput" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
       <p class="video-label">Solar System 3D Render — Partial Output &nbsp;·&nbsp; Replace <code>YOUR_VIDEO_ID</code> in the src above with your YouTube video ID.</p>
 
-    <!-- TOOLS -->
     <h2 class="block-title">Tools &amp; Technologies</h2>
     <div class="block-sub">Production Stack</div>
     <p class="body-text">The following tools and concepts were used in the production of the 3D solar system rendering project.</p>
@@ -164,14 +170,12 @@
       <div class="tool-card"><div class="tool-icon">🎬</div><div class="tool-name">Video Compositing</div><div class="tool-desc">Rendered frames were composited into a final video, with color grading applied for a cinematic space atmosphere.</div></div>
     </div>
 
- <!-- INDIVIDUAL PLANET -->
-  <h2 class="block-title">Individual Planet</h2>
+ <h2 class="block-title">Individual Planet</h2>
   <div class="block-sub">Say Hello to each Planet we have in Solar System!</div>
 
   <div class="module-grid">
 
-<!-- SUN -->
-    <div class="module-card">
+<div class="module-card">
       <h4>Sun</h4>
       <p>Short clip of Sun.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -180,8 +184,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=JwpHdZ182H4" target="_blank">Watch on YouTube</a>
     </div>
 
-<!-- MOON -->
-    <div class="module-card">
+<div class="module-card">
       <h4>Moon</h4>
       <p>Short clip of Moon.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -190,8 +193,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=NdCrv3UaCkE" target="_blank">Watch on YouTube</a>
     </div>
     
-      <!-- MERCURY -->
-    <div class="module-card">
+      <div class="module-card">
       <h4>Planet Mercury</h4>
       <p>Short clip of Planet Mercury.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -200,8 +202,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=9d1nIlKY7PM" target="_blank">Watch on YouTube</a>
     </div>
 
-  <!-- VENUS -->
-    <div class="module-card">
+  <div class="module-card">
       <h4>Planet Venus</h4>
       <p>Short clip of Planet Venus.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -210,7 +211,6 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=r7LwO4q33oU" target="_blank">Watch on YouTube</a>
     </div>
     
-    <!-- EARTH -->
     <div class="module-card">
       <h4>Planet Earth</h4>
       <p>Short clip of Planet Earth.</p>
@@ -220,8 +220,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=4c_Bh_1V9rQ" target="_blank">Watch on YouTube</a>
     </div>
 
-      <!-- MARS -->
-    <div class="module-card">
+      <div class="module-card">
       <h4>Planet Mars</h4>
       <p>Short clip of Planet Mars.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -230,8 +229,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=6qFHlGP7dTI" target="_blank">Watch on YouTube</a>
     </div>
 
-      <!-- JUPITER -->
-    <div class="module-card">
+      <div class="module-card">
       <h4>Planet Jupiter</h4>
       <p>Short clip of Planet Jupiter.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -240,8 +238,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=yBtIdt0uul4" target="_blank">Watch on YouTube</a>
     </div>
 
-      <!-- SATURN-->
-    <div class="module-card">
+      <div class="module-card">
       <h4>Planet Saturn</h4>
       <p>Short clip of Planet Saturn.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -250,8 +247,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=saturn" target="_blank">Watch on YouTube</a>
     </div>
 
-      <!-- URANUS -->
-    <div class="module-card">
+      <div class="module-card">
       <h4>Planet Uranus</h4>
       <p>Short clip of Planet Uranus.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -260,8 +256,7 @@
       <a class="yt-link" href="https://www.youtube.com/watch?v=4TB5_WsxaFU" target="_blank">Watch on YouTube</a>
     </div>
 
-      <!-- NEPTUNE -->
-    <div class="module-card">
+      <div class="module-card">
       <h4>Planet Neptune</h4>
       <p>Short clip of Planet Neptune.</p>
       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
@@ -269,9 +264,8 @@
       </div>
       <a class="yt-link" href="https://www.youtube.com/watch?v=HzII04BXK1k" target="_blank">Watch on YouTube</a>
     </div>
-
+  </div>
     
-    <!-- AGE CALCULATOR -->
     <h2 class="block-title">Planetary Age Calculator</h2>
     <div class="block-sub">Interactive Tool</div>
     <p class="body-text">Every planet takes a different amount of time to orbit the Sun — meaning your age is different on each one. Enter your Earth age to see how old you are across the solar system.</p>
@@ -298,8 +292,8 @@
 
   <script>
     const planets = [
-      { name:'Sun',     emoji:'☀️',  type:'Star',               orbitalPeriodDays:365.25,   distance:'0 AU — center of solar system' },
-      { name:'Mercury', emoji:'🪨',  type:'Terrestrial Planet', orbitalPeriodDays:87.97,    distance:'0.387 AU (57.9M km)' },
+      { name:'Sun',      emoji:'☀️',  type:'Star',                orbitalPeriodDays:365.25,   distance:'0 AU — center of solar system' },
+      { name:'Mercury', emoji:'🪨',  type:'Terrestrial Planet', orbitalPeriodDays:87.97,     distance:'0.387 AU (57.9M km)' },
       { name:'Venus',   emoji:'🌕',  type:'Terrestrial Planet', orbitalPeriodDays:224.70,   distance:'0.723 AU (108.2M km)' },
       { name:'Earth',   emoji:'🌍',  type:'Terrestrial Planet', orbitalPeriodDays:365.25,   distance:'1.000 AU (149.6M km)' },
       { name:'Mars',    emoji:'🔴',  type:'Terrestrial Planet', orbitalPeriodDays:686.97,   distance:'1.524 AU (227.9M km)' },
