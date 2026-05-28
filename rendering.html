@@ -5,131 +5,239 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3D Rendering — Ira L. Barasi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #0a0a0a; --dark: #111111; --card: #181818;
-      --border: #2a2a2a; --muted: #3d3d3d; --mid: #888888;
-      --light: #c8c8c8; --white: #f0f0f0;
-      --accent: #d4af6a; --accent-dim: #a07c3a;
+      --black: #050505; 
+      --dark: rgba(15, 15, 15, 0.75); 
+      --card: rgba(25, 25, 25, 0.65);
+      --border: rgba(255, 255, 255, 0.07); 
+      --border-hover: rgba(212, 175, 106, 0.3);
+      --muted: #555555; 
+      --mid: #999999;
+      --light: #e0e0e0; 
+      --white: #ffffff;
+      --accent: #d4af6a; 
+      --accent-dim: #a07c3a;
+      --glow: rgba(212, 175, 106, 0.15);
     }
+
+    /* CUSTOM SCROLLBAR */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; transition: background 0.3s; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Syne', sans-serif; background: var(--black); color: var(--white); }
+    
+    body { 
+      font-family: 'Syne', sans-serif; 
+      background: var(--black); 
+      color: var(--white);
+      overflow-x: hidden;
+      position: relative;
+    }
 
+    /* DEEP SPACE BACKGROUND AESTHETICS */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 106, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(212, 175, 106, 0.02) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.003) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.003) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* GLASSMORPHISM NAVIGATION */
     nav {
-      background: var(--dark); border-bottom: 1px solid var(--border);
-      padding: 0 2.5rem; display: flex; align-items: center;
-      justify-content: space-between; height: 62px; position: sticky; top: 0; z-index: 100;
+      background: rgba(10, 10, 10, 0.7); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 3rem; display: flex; align-items: center;
+      justify-content: space-between; height: 70px; position: sticky; top: 0; z-index: 100;
     }
-    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--white); letter-spacing: 0.06em; text-decoration: none; }
-    .nav-links { display: flex; gap: 0.3rem; }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--white); letter-spacing: 0.1em; text-decoration: none; position: relative; }
+    .nav-brand::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 30%; height: 1px; background: var(--accent); transition: width 0.3s; }
+    .nav-brand:hover::after { width: 100%; }
+    
+    .nav-links { display: flex; gap: 0.5rem; }
     .nav-links a {
-      color: var(--mid); text-decoration: none; font-size: 0.8rem; font-weight: 500;
-      padding: 0.4rem 1rem; border-radius: 3px; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s, background 0.2s;
+      color: var(--mid); text-decoration: none; font-size: 0.75rem; font-weight: 600;
+      padding: 0.5rem 1.2rem; border-radius: 4px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    .nav-links a:hover { color: var(--white); background: var(--muted); }
+    .nav-links a:hover { color: var(--white); background: rgba(255, 255, 255, 0.05); }
 
+    /* HERO SECTION */
     .hero {
-      padding: 5rem 2.5rem 4rem; border-bottom: 1px solid var(--border);
+      padding: 7rem 3rem 5rem; border-bottom: 1px solid var(--border);
       position: relative; overflow: hidden;
     }
     .hero::after {
-      content: ''; position: absolute; top: 0; right: 0; width: 40%; height: 100%;
-      background: radial-gradient(ellipse at right, rgba(212,175,106,0.05), transparent 70%);
+      content: ''; position: absolute; top: -20%; right: -10%; width: 50%; height: 140%;
+      background: radial-gradient(circle, rgba(212,175,106,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
-    .breadcrumb { font-size: 0.72rem; color: var(--muted); margin-bottom: 1.5rem; letter-spacing: 0.1em; text-transform: uppercase; }
-    .breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--accent); }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 5rem); color: var(--white); font-weight: 600; line-height: 1.08; margin-bottom: 0.5rem; }
-    .hero p { max-width: 660px; color: var(--mid); font-size: 0.88rem; line-height: 1.85; }
+    .breadcrumb { font-size: 0.7rem; color: var(--mid); margin-bottom: 1.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+    .breadcrumb a:hover { color: var(--white); }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 7vw, 5.5rem); color: var(--white); font-weight: 400; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .hero p { max-width: 680px; color: var(--mid); font-size: 0.92rem; line-height: 1.9; font-weight: 400; }
 
-    .content { max-width: 1060px; margin: 0 auto; padding: 5rem 2.5rem; }
-    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--white); margin-bottom: 0.3rem; font-weight: 600; margin-top: 4.5rem; }
+    /* CONTENT LAYOUT */
+    .content { max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
+    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 2.3rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 400; margin-top: 6rem; letter-spacing: 0.02em; }
     .block-title:first-child { margin-top: 0; }
-    .block-sub { font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px; }
-    .block-sub::after { content: ''; width: 40px; height: 1px; background: var(--accent); display: block; }
-    .body-text { font-size: 0.88rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 720px; }
+    .block-sub { font-size: 0.72rem; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 15px; font-weight: 600; }
+    .block-sub::after { content: ''; width: 50px; height: 1px; background: var(--accent); opacity: 0.7; display: block; }
+    .body-text { font-size: 0.92rem; line-height: 1.9; color: var(--mid); margin-bottom: 2.5rem; max-width: 760px; }
 
-    /* VIDEO */
-    .video-wrap { border: 1px solid var(--border); background: #000; aspect-ratio: 16/9; margin-bottom: 0.8rem; position: relative; overflow: hidden; }
+    /* VIDEO WRAPPERS WITH AMBIENT SHADOWS */
+    .video-wrap { 
+      border: 1px solid var(--border); 
+      background: #000; 
+      aspect-ratio: 16/9; 
+      margin-bottom: 1rem; 
+      position: relative; 
+      overflow: hidden; 
+      border-radius: 6px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      transition: border-color 0.4s, box-shadow 0.4s;
+    }
+    .video-wrap:hover {
+      border-color: rgba(212, 175, 106, 0.25);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 30px rgba(212, 175, 106, 0.03);
+    }
     .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-    .video-placeholder {
-      width: 100%; height: 100%; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 14px;
-      background: var(--dark); color: var(--muted); font-size: 0.82rem;
+    .video-label { font-size: 0.78rem; color: #666; margin-bottom: 3.5rem; letter-spacing: 0.05em; line-height: 1.6; }
+    .video-label code { background: rgba(255,255,255,0.04); padding: 2px 6px; border-radius: 3px; color: var(--accent); font-family: monospace; }
+
+    /* TOOLS GRID ARCHITECTURE */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; background: transparent; border: none; }
+    .tool-card { 
+      background: var(--dark); 
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2rem; 
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
     }
-    .play-circle { width: 60px; height: 60px; border: 1px solid var(--muted); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .video-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 2.5rem; letter-spacing: 0.06em; }
+    .tool-card:hover { 
+      background: var(--card); 
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px var(--glow);
+    }
+    .tool-icon { font-size: 1.6rem; margin-bottom: 1rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+    .tool-name { font-weight: 600; font-size: 0.95rem; color: var(--white); margin-bottom: 0.5rem; letter-spacing: 0.03em; }
+    .tool-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.7; font-weight: 400; }
 
-    /* TOOLS */
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .tool-card { background: var(--dark); padding: 1.5rem; transition: background 0.2s; }
-    .tool-card:hover { background: var(--card); }
-    .tool-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
-    .tool-name { font-weight: 600; font-size: 0.88rem; color: var(--white); margin-bottom: 0.4rem; letter-spacing: 0.02em; }
-    .tool-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.7; }
+    /* INDIVIDUAL PLANET MODULES (4 COLUMNS) */
+    .module-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 5rem; }
+    .module-card { 
+      background: var(--dark); 
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border); 
+      padding: 1.5rem; 
+      border-radius: 6px;
+      display: flex; flex-direction: column; justify-content: space-between; 
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .module-card:hover {
+      background: var(--card);
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px var(--glow);
+    }
+    .module-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 500; letter-spacing: 0.02em; }
+    .module-card p { font-size: 0.82rem; color: var(--mid); margin-bottom: 0.8rem; font-weight: 400; }
+    .module-card .yt-link { 
+      display: inline-block; font-size: 0.72rem; color: var(--accent); text-decoration: none; 
+      text-transform: uppercase; letter-spacing: 0.08em; margin-top: 1rem; font-weight: 700; 
+      transition: color 0.3s, transform 0.3s; 
+    }
+    .module-card .yt-link:hover { color: var(--white); transform: translateX(3px); }
 
-    /* FIXED INDIVIDUAL PLANET STYLES - 4 COLUMNS */
-    .module-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 4rem; }
-    .module-card { background: var(--dark); border: 1px solid var(--border); padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
-    .module-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--white); margin-bottom: 0.3rem; font-weight: 600; }
-    .module-card p { font-size: 0.8rem; color: var(--mid); margin-bottom: 0.5rem; }
-    .module-card .yt-link { display: inline-block; font-size: 0.72rem; color: var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.8rem; font-weight: 600; transition: color 0.2s; }
-    .module-card .yt-link:hover { color: var(--light); }
-
-    /* CALCULATOR */
-    .calc-box { border: 1px solid var(--border); background: var(--dark); padding: 2rem; margin-bottom: 0.5rem; }
-    .calc-row { display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1rem; }
-    .calc-field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 180px; }
-    .calc-field label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); }
+    /* CALCULATOR CONTAINER */
+    .calc-box { 
+      border: 1px solid var(--border); 
+      background: var(--dark); 
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2.5rem; 
+      border-radius: 6px;
+      margin-bottom: 1rem; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .calc-row { display: flex; gap: 1.5rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .calc-field { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 200px; }
+    .calc-field label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); font-weight: 600; }
     .calc-field input {
-      padding: 0.65rem 1rem; border: 1px solid var(--border); background: var(--black);
-      font-family: 'Syne', sans-serif; font-size: 0.95rem; color: var(--white);
-      transition: border-color 0.2s; outline: none;
+      padding: 0.8rem 1.2rem; border: 1px solid var(--border); background: rgba(0, 0, 0, 0.4);
+      border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 1rem; color: var(--white);
+      transition: all 0.3s; outline: none;
     }
-    .calc-field input:focus { border-color: var(--accent); }
+    .calc-field input:focus { border-color: var(--accent); background: rgba(0,0,0,0.6); box-shadow: 0 0 15px rgba(212, 175, 106, 0.1); }
     .calc-btn {
-      padding: 0.68rem 1.8rem; background: var(--accent); color: var(--black);
-      border: none; font-family: 'Syne', sans-serif; font-size: 0.78rem;
-      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      cursor: pointer; transition: background 0.2s; white-space: nowrap;
+      padding: 0.85rem 2.2rem; background: var(--accent); color: var(--black);
+      border: none; border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 0.78rem;
+      font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap;
     }
-    .calc-btn:hover { background: var(--light); }
-    .calc-hint { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em; }
+    .calc-btn:hover { background: var(--white); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(212,175,106,0.2); }
+    .calc-hint { font-size: 0.75rem; color: #555; letter-spacing: 0.04em; line-height: 1.5; }
 
-    /* PLANET CARDS */
-    .planets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
-    .planet-card { background: var(--dark); transition: background 0.2s; }
-    .planet-card:hover { background: var(--card); }
+    /* INTERACTIVE OUTPUT PLANET CARDS */
+    .planets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; background: transparent; border: none; margin-top: 2rem; }
+    .planet-card { 
+      background: var(--dark); 
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+    .planet-card:hover { 
+      background: var(--card); 
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px var(--glow);
+    }
     .planet-header {
-      padding: 1.3rem 1.3rem 1rem;
-      display: flex; align-items: center; gap: 12px;
+      padding: 1.5rem; display: flex; align-items: center; gap: 14px;
       border-bottom: 1px solid var(--border);
     }
-    .planet-emoji { font-size: 2rem; line-height: 1; }
-    .planet-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--white); font-weight: 600; }
-    .planet-type { font-size: 0.68rem; color: var(--muted); margin-top: 1px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .planet-stats { padding: 1rem 1.3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem 0.5rem; border-bottom: 1px solid var(--border); }
-    .planet-stat-label { font-size: 0.64rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 2px; }
+    .planet-emoji { font-size: 2.2rem; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+    .planet-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--white); font-weight: 500; letter-spacing: 0.02em; }
+    .planet-type { font-size: 0.68rem; color: var(--accent); opacity: 0.8; margin-top: 2px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .planet-stats { padding: 1.2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 0.8rem; border-bottom: 1px solid var(--border); }
+    .planet-stat-label { font-size: 0.62rem; color: #666; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; font-weight: 600; }
     .planet-stat-val { font-size: 0.85rem; color: var(--light); font-weight: 500; }
-    .planet-age-row {
-      padding: 1rem 1.3rem;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .planet-age-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-    .planet-age-val { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--accent); font-weight: 600; }
-    .planet-age-val.empty { font-family: 'Syne', sans-serif; font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+    .planet-age-row { padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.15); border-radius: 0 0 6px 6px; }
+    .planet-age-label { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+    .planet-age-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--accent); font-weight: 600; text-shadow: 0 0 10px rgba(212,175,106,0.2); }
+    .planet-age-val.empty { font-family: 'Syne', sans-serif; font-size: 0.75rem; color: var(--muted); font-weight: 500; text-shadow: none; }
 
+    /* FOOTER DESIGN */
     footer {
-      border-top: 1px solid var(--border); background: var(--dark);
-      text-align: center; padding: 2.2rem 1.5rem;
-      font-size: 0.78rem; letter-spacing: 0.06em; color: var(--muted); line-height: 2; margin-top: 5rem;
+      border-top: 1px solid var(--border); background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      text-align: center; padding: 3rem 1.5rem;
+      font-size: 0.8rem; letter-spacing: 0.08em; color: var(--muted); line-height: 2; margin-top: 6rem;
     }
     footer span { color: var(--mid); }
 
-    @media(max-width:900px){ .module-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media(max-width:600px){ .hero, .content { padding-left: 1.2rem; padding-right: 1.2rem; } nav { padding: 0 1.2rem; } .calc-row { flex-direction: column; } .module-grid { grid-template-columns: 1fr; } }
+    /* RESPONSIVE LAYOUT BREAKPOINTS */
+    @media(max-width:1024px){ .module-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+    @media(max-width:768px){ .hero, .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } }
+    @media(max-width:600px){ .calc-row { flex-direction: column; align-items: stretch; } .calc-btn { text-align: center; } .module-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -156,7 +264,7 @@
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/partialoutput" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-      <p class="video-label">Solar System 3D Render — Partial Output &nbsp;·&nbsp; Replace <code>YOUR_VIDEO_ID</code> in the src above with your YouTube video ID.</p>
+    <p class="video-label">Solar System 3D Render — Partial Output &nbsp;·&nbsp; Replace <code>YOUR_VIDEO_ID</code> in the src above with your YouTube video ID.</p>
 
     <h2 class="block-title">Tools &amp; Technologies</h2>
     <div class="block-sub">Production Stack</div>
@@ -170,101 +278,100 @@
       <div class="tool-card"><div class="tool-icon">🎬</div><div class="tool-name">Video Compositing</div><div class="tool-desc">Rendered frames were composited into a final video, with color grading applied for a cinematic space atmosphere.</div></div>
     </div>
 
- <h2 class="block-title">Individual Planet</h2>
-  <div class="block-sub">Say Hello to each Planet we have in Solar System!</div>
+    <h2 class="block-title">Individual Planet</h2>
+    <div class="block-sub">Say Hello to each Planet we have in Solar System!</div>
 
-  <div class="module-grid">
-
-<div class="module-card">
-      <h4>Sun</h4>
-      <p>Short clip of Sun.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/JwpHdZ182H4" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=JwpHdZ182H4" target="_blank">Watch on YouTube</a>
-    </div>
-
-<div class="module-card">
-      <h4>Moon</h4>
-      <p>Short clip of Moon.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/NdCrv3UaCkE" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=NdCrv3UaCkE" target="_blank">Watch on YouTube</a>
-    </div>
-    
+    <div class="module-grid">
       <div class="module-card">
-      <h4>Planet Mercury</h4>
-      <p>Short clip of Planet Mercury.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/9d1nIlKY7PM" allowfullscreen></iframe>
+        <h4>Sun</h4>
+        <p>Short clip of Sun.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/JwpHdZ182H4" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=JwpHdZ182H4" target="_blank">Watch on YouTube &rarr;</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=9d1nIlKY7PM" target="_blank">Watch on YouTube</a>
-    </div>
-
-  <div class="module-card">
-      <h4>Planet Venus</h4>
-      <p>Short clip of Planet Venus.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/r7LwO4q33oU" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=r7LwO4q33oU" target="_blank">Watch on YouTube</a>
-    </div>
-    
-    <div class="module-card">
-      <h4>Planet Earth</h4>
-      <p>Short clip of Planet Earth.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/4c_Bh_1V9rQ" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=4c_Bh_1V9rQ" target="_blank">Watch on YouTube</a>
-    </div>
 
       <div class="module-card">
-      <h4>Planet Mars</h4>
-      <p>Short clip of Planet Mars.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/6qFHlGP7dTI" allowfullscreen></iframe>
+        <h4>Moon</h4>
+        <p>Short clip of Moon.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/NdCrv3UaCkE" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=NdCrv3UaCkE" target="_blank">Watch on YouTube &rarr;</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=6qFHlGP7dTI" target="_blank">Watch on YouTube</a>
-    </div>
+      
+      <div class="module-card">
+        <h4>Planet Mercury</h4>
+        <p>Short clip of Planet Mercury.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/9d1nIlKY7PM" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=9d1nIlKY7PM" target="_blank">Watch on YouTube &rarr;</a>
+      </div>
 
       <div class="module-card">
-      <h4>Planet Jupiter</h4>
-      <p>Short clip of Planet Jupiter.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/yBtIdt0uul4" allowfullscreen></iframe>
+        <h4>Planet Venus</h4>
+        <p>Short clip of Planet Venus.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/r7LwO4q33oU" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=r7LwO4q33oU" target="_blank">Watch on YouTube &rarr;</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=yBtIdt0uul4" target="_blank">Watch on YouTube</a>
-    </div>
+      
+      <div class="module-card">
+        <h4>Planet Earth</h4>
+        <p>Short clip of Planet Earth.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/4c_Bh_1V9rQ" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=4c_Bh_1V9rQ" target="_blank">Watch on YouTube &rarr;</a>
+      </div>
 
       <div class="module-card">
-      <h4>Planet Saturn</h4>
-      <p>Short clip of Planet Saturn.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/saturn" allowfullscreen></iframe>
+        <h4>Planet Mars</h4>
+        <p>Short clip of Planet Mars.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/6qFHlGP7dTI" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=6qFHlGP7dTI" target="_blank">Watch on YouTube &rarr;</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=saturn" target="_blank">Watch on YouTube</a>
-    </div>
 
       <div class="module-card">
-      <h4>Planet Uranus</h4>
-      <p>Short clip of Planet Uranus.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/4TB5_WsxaFU" allowfullscreen></iframe>
+        <h4>Planet Jupiter</h4>
+        <p>Short clip of Planet Jupiter.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/yBtIdt0uul4" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=yBtIdt0uul4" target="_blank">Watch on YouTube &rarr;</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=4TB5_WsxaFU" target="_blank">Watch on YouTube</a>
-    </div>
 
       <div class="module-card">
-      <h4>Planet Neptune</h4>
-      <p>Short clip of Planet Neptune.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/HzII04BXK1k" allowfullscreen></iframe>
+        <h4>Planet Saturn</h4>
+        <p>Short clip of Planet Saturn.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/saturn" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=saturn" target="_blank">Watch on YouTube &rarr;</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=HzII04BXK1k" target="_blank">Watch on YouTube</a>
+
+      <div class="module-card">
+        <h4>Planet Uranus</h4>
+        <p>Short clip of Planet Uranus.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/4TB5_WsxaFU" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=4TB5_WsxaFU" target="_blank">Watch on YouTube &rarr;</a>
+      </div>
+
+      <div class="module-card">
+        <h4>Planet Neptune</h4>
+        <p>Short clip of Planet Neptune.</p>
+        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+          <iframe src="https://www.youtube.com/embed/HzII04BXK1k" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=HzII04BXK1k" target="_blank">Watch on YouTube &rarr;</a>
+      </div>
     </div>
-  </div>
     
     <h2 class="block-title">Planetary Age Calculator</h2>
     <div class="block-sub">Interactive Tool</div>
