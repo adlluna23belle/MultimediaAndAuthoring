@@ -195,13 +195,16 @@
     .calc-hint { font-size: 0.75rem; color: #555; letter-spacing: 0.04em; line-height: 1.5; }
 
     /* INTERACTIVE OUTPUT PLANET CARDS */
-    .planets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; background: transparent; border: none; margin-top: 2rem; }
+    .planets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; background: transparent; border: none; margin-top: 2rem; }
     .planet-card { 
       background: var(--dark); 
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border-radius: 6px;
       border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
     }
     .planet-card:hover { 
@@ -217,6 +220,17 @@
     .planet-emoji { font-size: 2.2rem; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
     .planet-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--white); font-weight: 500; letter-spacing: 0.02em; }
     .planet-type { font-size: 0.68rem; color: var(--accent); opacity: 0.8; margin-top: 2px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    
+    /* NEW: PLANET FACT BLOCK STYLE */
+    .planet-fact {
+      padding: 1rem 1.5rem 0.5rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #b0b0b0;
+      border-bottom: 1px dashed rgba(255,255,255,0.05);
+    }
+    .planet-fact strong { color: var(--accent); font-weight: 600; }
+
     .planet-stats { padding: 1.2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 0.8rem; border-bottom: 1px solid var(--border); }
     .planet-stat-label { font-size: 0.62rem; color: #666; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; font-weight: 600; }
     .planet-stat-val { font-size: 0.85rem; color: var(--light); font-weight: 500; }
@@ -258,7 +272,6 @@
 
   <div class="content">
 
-    <!-- FINAL OUTPUT -->
     <h2 class="block-title">Partial Output</h2>
     <div class="block-sub">First Part of the Activity</div>
     <p class="body-text">The 3D rendered solar system animation — featuring all eight planets in orbit around the Sun, with accurate relative sizing, texturing, and lighting simulation.</p>
@@ -267,7 +280,6 @@
     </div>
     <p class="video-label">Solar System 3D Render — Partial Output &nbsp;·&nbsp; Replace <code>YOUR_VIDEO_ID</code> in the src above with your YouTube video ID.</p>
 
-    <!-- TOOLS -->
     <h2 class="block-title">Tools &amp; Technologies</h2>
     <div class="block-sub">Production Stack</div>
     <p class="body-text">The following tools and concepts were used in the production of the 3D solar system rendering project.</p>
@@ -280,12 +292,10 @@
       <div class="tool-card"><div class="tool-icon">🎬</div><div class="tool-name">Video Compositing</div><div class="tool-desc">Rendered frames were composited into a final video, with color grading applied for a cinematic space atmosphere.</div></div>
     </div>
 
-    <!-- INDIVIDUAL PLANET -->
     <h2 class="block-title">Individual Planet</h2>
     <div class="block-sub">Say Hello to each Planet we have in Solar System!</div>
 
     <div class="module-grid">
-      <!-- SUN -->
       <div class="module-card">
         <h4>Sun</h4>
         <p>Short clip of Sun.</p>
@@ -295,7 +305,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=JwpHdZ182H4" target="_blank">Watch on YouTube &rarr;</a>
       </div>
 
-      <!-- MOON -->
       <div class="module-card">
         <h4>Moon</h4>
         <p>Short clip of Moon.</p>
@@ -305,7 +314,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=NdCrv3UaCkE" target="_blank">Watch on YouTube &rarr;</a>
       </div>
       
-      <!-- MERCURY -->
       <div class="module-card">
         <h4>Planet Mercury</h4>
         <p>Short clip of Planet Mercury.</p>
@@ -315,7 +323,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=9d1nIlKY7PM" target="_blank">Watch on YouTube &rarr;</a>
       </div>
 
-      <!-- VENUS -->
       <div class="module-card">
         <h4>Planet Venus</h4>
         <p>Short clip of Planet Venus.</p>
@@ -325,7 +332,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=r7LwO4q33oU" target="_blank">Watch on YouTube &rarr;</a>
       </div>
       
-      <!-- EARTH -->
       <div class="module-card">
         <h4>Planet Earth</h4>
         <p>Short clip of Planet Earth.</p>
@@ -335,7 +341,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=4c_Bh_1V9rQ" target="_blank">Watch on YouTube &rarr;</a>
       </div>
 
-      <!-- MARS -->
       <div class="module-card">
         <h4>Planet Mars</h4>
         <p>Short clip of Planet Mars.</p>
@@ -345,7 +350,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=6qFHlGP7dTI" target="_blank">Watch on YouTube &rarr;</a>
       </div>
 
-      <!-- JUPITER -->
       <div class="module-card">
         <h4>Planet Jupiter</h4>
         <p>Short clip of Planet Jupiter.</p>
@@ -355,7 +359,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=yBtIdt0uul4" target="_blank">Watch on YouTube &rarr;</a>
       </div>
 
-      <!-- SATURN-->
       <div class="module-card">
         <h4>Planet Saturn</h4>
         <p>Short clip of Planet Saturn.</p>
@@ -365,7 +368,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=saturn" target="_blank">Watch on YouTube &rarr;</a>
       </div>
 
-      <!-- URANUS -->
       <div class="module-card">
         <h4>Planet Uranus</h4>
         <p>Short clip of Planet Uranus.</p>
@@ -375,7 +377,6 @@
         <a class="yt-link" href="https://www.youtube.com/watch?v=4TB5_WsxaFU" target="_blank">Watch on YouTube &rarr;</a>
       </div>
 
-      <!-- NEPTUNE -->
       <div class="module-card">
         <h4>Planet Neptune</h4>
         <p>Short clip of Planet Neptune.</p>
@@ -386,7 +387,6 @@
       </div>
     </div>
     
-    <!-- AGE CALCULATOR -->
     <h2 class="block-title">Planetary Age Calculator</h2>
     <div class="block-sub">Interactive Tool</div>
     <p class="body-text">Every planet takes a different amount of time to orbit the Sun — meaning your age is different on each one. Enter your Earth age to see how old you are across the solar system.</p>
@@ -413,15 +413,77 @@
 
   <script>
     const planets = [
-      { name:'Sun',      emoji:'☀️',  type:'Star',                orbitalPeriodDays:365.25,   distance:'0 AU — center of solar system' },
-      { name:'Mercury', emoji:'🪨',  type:'Terrestrial Planet', orbitalPeriodDays:87.97,     distance:'0.387 AU (57.9M km)' },
-      { name:'Venus',   emoji:'🌕',  type:'Terrestrial Planet', orbitalPeriodDays:224.70,   distance:'0.723 AU (108.2M km)' },
-      { name:'Earth',   emoji:'🌍',  type:'Terrestrial Planet', orbitalPeriodDays:365.25,   distance:'1.000 AU (149.6M km)' },
-      { name:'Mars',    emoji:'🔴',  type:'Terrestrial Planet', orbitalPeriodDays:686.97,   distance:'1.524 AU (227.9M km)' },
-      { name:'Jupiter', emoji:'🟠',  type:'Gas Giant',          orbitalPeriodDays:4332.59,  distance:'5.203 AU (778.6M km)' },
-      { name:'Saturn',  emoji:'🪐',  type:'Gas Giant',          orbitalPeriodDays:10759.22, distance:'9.537 AU (1.43B km)' },
-      { name:'Uranus',  emoji:'🔵',  type:'Ice Giant',          orbitalPeriodDays:30688.50, distance:'19.19 AU (2.87B km)' },
-      { name:'Neptune', emoji:'🫧',  type:'Ice Giant',          orbitalPeriodDays:60195.00, distance:'30.07 AU (4.50B km)' },
+      { 
+        name:'Sun',      
+        emoji:'☀️',  
+        type:'Star',                
+        orbitalPeriodDays:365.25,   
+        distance:'0 AU — center',
+        fact: 'The heart of our solar system. It accounts for <strong>99.8%</strong> of the total system mass and sustains all planetary life through nuclear fusion.'
+      },
+      { 
+        name:'Mercury', 
+        emoji:'🪨',  
+        type:'Terrestrial Planet', 
+        orbitalPeriodDays:87.97,     
+        distance:'0.387 AU',
+        fact: 'The smallest planet and closest to the Sun. It experiences extreme temperature swings, from <strong>430°C</strong> during the day to <strong>-180°C</strong> at night.'
+      },
+      { 
+        name:'Venus',   
+        emoji:'🌕',  
+        type:'Terrestrial Planet', 
+        orbitalPeriodDays:224.70,   
+        distance:'0.723 AU',
+        fact: 'Earth\'s "twin" in size, but plagued by a runaway greenhouse effect. Its thick toxic atmosphere makes it the <strong>hottest planet</strong> in the system.'
+      },
+      { 
+        name:'Earth',   
+        emoji:'🌍',  
+        type:'Terrestrial Planet', 
+        orbitalPeriodDays:365.25,   
+        distance:'1.000 AU',
+        fact: 'Our home base. It is the only known celestial body capable of harboring life, uniquely maintaining stable <strong>liquid water oceans</strong>.'
+      },
+      { 
+        name:'Mars',    
+        emoji:'🔴',  
+        type:'Terrestrial Planet', 
+        orbitalPeriodDays:686.97,   
+        distance:'1.524 AU',
+        fact: 'The Red Planet. Iron oxide on its surface gives it a rusty color. It features <strong>Olympus Mons</strong>, the largest volcano in our solar system.'
+      },
+      { 
+        name:'Jupiter', emoji:'🟠',  
+        type:'Gas Giant',          
+        orbitalPeriodDays:4332.59,  
+        distance:'5.203 AU',
+        fact: 'The king of the planets. This massive gas giant is twice as heavy as all other planets combined and holds a centuries-old storm: <strong>The Great Red Spot</strong>.'
+      },
+      { 
+        name:'Saturn',  
+        emoji:'🪐',  
+        type:'Gas Giant',          
+        orbitalPeriodDays:10759.22, 
+        distance:'9.537 AU',
+        fact: 'Famous for its highly extensive and spectacular <strong>ring system</strong> made up of billions of chunks of ice, rocky debris, and cosmic dust.'
+      },
+      { 
+        name:'Uranus',  
+        emoji:'🔵',  
+        type:'Ice Giant',          
+        orbitalPeriodDays:30688.50, 
+        distance:'19.19 AU',
+        fact: 'An ice giant with a unique orientation. It is the only planet that rotates completely <strong>on its side</strong>, likely due to an ancient planetary collision.'
+      },
+      { 
+        name:'Neptune', 
+        emoji:'🫧',  
+        type:'Ice Giant',          
+        orbitalPeriodDays:60195.00, 
+        distance:'30.07 AU',
+        fact: 'The most distant planet from the Sun. It is a freezing world swept by supersonic winds that reach speeds of up to <strong>2,100 kilometers per hour</strong>.'
+      },
     ];
 
     function renderCards(earthAge) {
@@ -451,29 +513,36 @@
 
         return `
           <div class="planet-card">
-            <div class="planet-header">
-              <div class="planet-emoji">${p.emoji}</div>
-              <div>
-                <div class="planet-name">${p.name}</div>
-                <div class="planet-type">${p.type}</div>
+            <div>
+              <div class="planet-header">
+                <div class="planet-emoji">${p.emoji}</div>
+                <div>
+                  <div class="planet-name">${p.name}</div>
+                  <div class="planet-type">${p.type}</div>
+                </div>
               </div>
-            </div>
-            <div class="planet-stats">
-              <div>
-                <div class="planet-stat-label">Orbital Period</div>
-                <div class="planet-stat-val">${periodFmt}</div>
+              
+              <div class="planet-fact">
+                ${p.fact}
               </div>
-              <div>
-                <div class="planet-stat-label">Revolutions / yr</div>
-                <div class="planet-stat-val">${revsFmt}</div>
-              </div>
-              <div>
-                <div class="planet-stat-label">Distance from Sun</div>
-                <div class="planet-stat-val">${p.distance}</div>
-              </div>
-              <div>
-                <div class="planet-stat-label">Orbits Completed</div>
-                <div class="planet-stat-val">${totalRevsDisplay}</div>
+
+              <div class="planet-stats">
+                <div>
+                  <div class="planet-stat-label">Orbital Period</div>
+                  <div class="planet-stat-val">${periodFmt}</div>
+                </div>
+                <div>
+                  <div class="planet-stat-label">Revolutions / yr</div>
+                  <div class="planet-stat-val">${revsFmt}</div>
+                </div>
+                <div>
+                  <div class="planet-stat-label">Distance from Sun</div>
+                  <div class="planet-stat-val">${p.distance}</div>
+                </div>
+                <div>
+                  <div class="planet-stat-label">Orbits Completed</div>
+                  <div class="planet-stat-val">${totalRevsDisplay}</div>
+                </div>
               </div>
             </div>
             <div class="planet-age-row">
