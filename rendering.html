@@ -8,24 +8,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #050505; 
-      --dark: rgba(15, 15, 15, 0.75); 
-      --card: rgba(25, 25, 25, 0.65);
-      --border: rgba(255, 255, 255, 0.07); 
-      --border-hover: rgba(212, 175, 106, 0.3);
-      --muted: #555555; 
+      --black: #030303; 
+      --dark: rgba(10, 10, 10, 0.75); 
+      --card: rgba(18, 18, 18, 0.85);
+      --border: rgba(255, 255, 255, 0.05); 
+      --border-hover: rgba(212, 175, 106, 0.4);
+      --muted: #444444; 
       --mid: #999999;
       --light: #e0e0e0; 
       --white: #ffffff;
       --accent: #d4af6a; 
       --accent-dim: #a07c3a;
-      --glow: rgba(212, 175, 106, 0.15);
+      --glow: rgba(212, 175, 106, 0.12);
     }
 
     /* CUSTOM SCROLLBAR */
-    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; transition: background 0.3s; }
+    ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,66 +38,86 @@
       position: relative;
     }
 
-    /* DEEP SPACE BACKGROUND AESTHETICS */
+    /* IDEA 1: AMBIENT DEEP SPACE STARFIELD EFFECT */
     body::before {
       content: '';
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: 
-        radial-gradient(circle at 20% 30%, rgba(212, 175, 106, 0.03) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(212, 175, 106, 0.02) 0%, transparent 50%),
-        linear-gradient(rgba(255,255,255,0.003) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.003) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        radial-gradient(circle at 15% 20%, rgba(212, 175, 106, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(138, 113, 67, 0.03) 0%, transparent 50%),
+        /* Dense micro-stars */
+        radial-gradient(1px 1px at 10px 30px, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1.5px 1.5px at 150px 80px, rgba(212,175,106,0.25), transparent),
+        radial-gradient(1px 1px at 300px 290px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(2px 2px at 450px 120px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 700px 350px, rgba(212,175,106,0.3), transparent),
+        radial-gradient(1.5px 1.5px at 950px 200px, rgba(255,255,255,0.35), transparent),
+        radial-gradient(1px 1px at 1200px 50px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(2px 2px at 1400px 400px, rgba(212,175,106,0.15), transparent);
+      background-size: 100% 100%, 100% 100%, 350px 350px, 400px 400px, 500px 500px, 450px 450px, 600px 600px, 550px 550px, 300px 300px, 650px 650px;
       z-index: -1;
       pointer-events: none;
     }
 
     /* GLASSMORPHISM NAVIGATION */
     nav {
-      background: rgba(10, 10, 10, 0.7); 
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(4, 4, 4, 0.75); 
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       padding: 0 3rem; display: flex; align-items: center;
-      justify-content: space-between; height: 70px; position: sticky; top: 0; z-index: 100;
+      justify-content: space-between; height: 75px; position: sticky; top: 0; z-index: 100;
     }
-    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--white); letter-spacing: 0.1em; text-decoration: none; position: relative; }
-    .nav-brand::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 30%; height: 1px; background: var(--accent); transition: width 0.3s; }
+    .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); letter-spacing: 0.12em; text-decoration: none; position: relative; }
+    .nav-brand::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 25%; height: 1px; background: var(--accent); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     .nav-brand:hover::after { width: 100%; }
     
     .nav-links { display: flex; gap: 0.5rem; }
     .nav-links a {
-      color: var(--mid); text-decoration: none; font-size: 0.75rem; font-weight: 600;
-      padding: 0.5rem 1.2rem; border-radius: 4px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      color: var(--mid); text-decoration: none; font-size: 0.72rem; font-weight: 600;
+      padding: 0.6rem 1.3rem; border-radius: 4px; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s ease;
     }
-    .nav-links a:hover { color: var(--white); background: rgba(255, 255, 255, 0.05); }
+    .nav-links a:hover { color: var(--white); background: rgba(255, 255, 255, 0.03); }
 
     /* HERO SECTION */
     .hero {
-      padding: 7rem 3rem 5rem; border-bottom: 1px solid var(--border);
+      padding: 8rem 3rem 6rem; border-bottom: 1px solid var(--border);
       position: relative; overflow: hidden;
     }
-    .hero::after {
-      content: ''; position: absolute; top: -20%; right: -10%; width: 50%; height: 140%;
-      background: radial-gradient(circle, rgba(212,175,106,0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .breadcrumb { font-size: 0.7rem; color: var(--mid); margin-bottom: 1.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; }
+    .breadcrumb { font-size: 0.68rem; color: var(--mid); margin-bottom: 2rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
     .breadcrumb a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
     .breadcrumb a:hover { color: var(--white); }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 7vw, 5.5rem); color: var(--white); font-weight: 400; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    .hero p { max-width: 680px; color: var(--mid); font-size: 0.92rem; line-height: 1.9; font-weight: 400; }
+
+    /* IDEA 3: KINETIC TYPOGRAPHIC MASKING FOR THE HERO HEADER */
+    .hero h1 { 
+      font-family: 'Cormorant Garamond', serif; 
+      font-size: clamp(3rem, 7.5vw, 5.8rem); 
+      font-weight: 400; 
+      line-height: 1.05; 
+      margin-bottom: 1.5rem; 
+      letter-spacing: -0.02em; 
+      background: linear-gradient(45deg, var(--white) 25%, var(--accent) 65%, var(--white) 90%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: cosmicShine 10s linear infinite;
+    }
+    @keyframes cosmicShine {
+      to { background-position: 200% center; }
+    }
+
+    .hero p { max-width: 720px; color: var(--mid); font-size: 0.95rem; line-height: 1.9; font-weight: 400; }
 
     /* CONTENT LAYOUT */
-    .content { max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
-    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 2.3rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 400; margin-top: 6rem; letter-spacing: 0.02em; }
+    .content { max-width: 1240px; margin: 0 auto; padding: 6rem 3rem; }
+    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 400; margin-top: 7rem; letter-spacing: 0.02em; }
     .block-title:first-child { margin-top: 0; }
-    .block-sub { font-size: 0.72rem; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 15px; font-weight: 600; }
-    .block-sub::after { content: ''; width: 50px; height: 1px; background: var(--accent); opacity: 0.7; display: block; }
-    .body-text { font-size: 0.92rem; line-height: 1.9; color: var(--mid); margin-bottom: 2.5rem; max-width: 760px; }
+    .block-sub { font-size: 0.72rem; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 3rem; display: flex; align-items: center; gap: 15px; font-weight: 700; }
+    .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
+    .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 3rem; max-width: 800px; }
 
-    /* VIDEO WRAPPERS WITH AMBIENT SHADOWS */
+    /* IDEA 4: VIDEO WRAPPERS WITH AMBIENT LIGHT SHADOWS */
     .video-wrap { 
       border: 1px solid var(--border); 
       background: #000; 
@@ -105,146 +125,132 @@
       margin-bottom: 1rem; 
       position: relative; 
       overflow: hidden; 
-      border-radius: 6px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      transition: border-color 0.4s, box-shadow 0.4s;
+      border-radius: 8px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .video-wrap::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      border-radius: 8px; pointer-events: none;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
     }
     .video-wrap:hover {
-      border-color: rgba(212, 175, 106, 0.25);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 30px rgba(212, 175, 106, 0.03);
+      border-color: rgba(212, 175, 106, 0.35);
+      transform: scale(1.005);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 40px rgba(212, 175, 106, 0.06);
     }
     .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-    .video-label { font-size: 0.78rem; color: #666; margin-bottom: 3.5rem; letter-spacing: 0.05em; line-height: 1.6; }
-    .video-label code { background: rgba(255,255,255,0.04); padding: 2px 6px; border-radius: 3px; color: var(--accent); font-family: monospace; }
+    .video-label { font-size: 0.78rem; color: #555; margin-bottom: 4rem; letter-spacing: 0.05em; line-height: 1.6; }
+    .video-label code { background: rgba(255,255,255,0.03); padding: 2px 6px; border-radius: 3px; color: var(--accent); font-family: monospace; }
 
-    /* TOOLS GRID ARCHITECTURE */
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; background: transparent; border: none; }
+    /* TOOLS GRID & GENERIC CARD STRUCTURE ARCHITECTURE */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
+    
+    /* IDEA 5: GRADIENT Horizon BORDERS (ON HOVER TRANSLATION) */
     .tool-card { 
       background: var(--dark); 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 2rem; 
-      border-radius: 6px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: 2.2rem; border-radius: 8px;
       border: 1px solid var(--border);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
     }
-    .tool-card:hover { 
+    .tool-card:hover, .module-card:hover, .planet-card:hover { 
       background: var(--card); 
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px var(--glow);
+      border-color: transparent;
+      border-image: linear-gradient(to right, var(--accent) 0%, rgba(255,255,255,0.05) 100%) 1;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px var(--glow);
     }
-    .tool-icon { font-size: 1.6rem; margin-bottom: 1rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-    .tool-name { font-weight: 600; font-size: 0.95rem; color: var(--white); margin-bottom: 0.5rem; letter-spacing: 0.03em; }
-    .tool-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.7; font-weight: 400; }
+    .tool-icon { font-size: 1.6rem; margin-bottom: 1.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+    .tool-name { font-weight: 600; font-size: 0.98rem; color: var(--white); margin-bottom: 0.6rem; letter-spacing: 0.03em; }
+    .tool-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 400; }
 
     /* INDIVIDUAL PLANET MODULES (3 COLUMNS) */
     .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 5rem; }
     .module-card { 
       background: var(--dark); 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border); 
-      padding: 1.5rem; 
-      border-radius: 6px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border); padding: 1.8rem; border-radius: 8px;
       display: flex; flex-direction: column; justify-content: space-between; 
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .module-card:hover {
-      background: var(--card);
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px var(--glow);
-    }
-    .module-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 500; letter-spacing: 0.02em; }
-    .module-card p { font-size: 0.82rem; color: var(--mid); margin-bottom: 0.8rem; font-weight: 400; }
+    .module-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 500; letter-spacing: 0.02em; }
+    .module-card p { font-size: 0.82rem; color: var(--mid); margin-bottom: 1rem; font-weight: 400; }
     .module-card .yt-link { 
       display: inline-block; font-size: 0.72rem; color: var(--accent); text-decoration: none; 
-      text-transform: uppercase; letter-spacing: 0.08em; margin-top: 1rem; font-weight: 700; 
-      transition: color 0.3s, transform 0.3s; 
+      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1.5rem; font-weight: 700; 
+      transition: all 0.3s ease; 
     }
-    .module-card .yt-link:hover { color: var(--white); transform: translateX(3px); }
+    .module-card .yt-link:hover { color: var(--white); transform: translateX(4px); }
 
     /* CALCULATOR CONTAINER */
     .calc-box { 
       border: 1px solid var(--border); 
       background: var(--dark); 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 2.5rem; 
-      border-radius: 6px;
-      margin-bottom: 1rem; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: 3rem; border-radius: 8px; margin-bottom: 1rem; 
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
-    .calc-row { display: flex; gap: 1.5rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1.2rem; }
-    .calc-field { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 200px; }
-    .calc-field label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); font-weight: 600; }
+    .calc-row { display: flex; gap: 1.5rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .calc-field { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 240px; }
+    .calc-field label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); font-weight: 600; }
     .calc-field input {
-      padding: 0.8rem 1.2rem; border: 1px solid var(--border); background: rgba(0, 0, 0, 0.4);
+      padding: 0.9rem 1.4rem; border: 1px solid var(--border); background: rgba(0, 0, 0, 0.6);
       border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 1rem; color: var(--white);
-      transition: all 0.3s; outline: none;
+      transition: all 0.3s ease; outline: none;
     }
-    .calc-field input:focus { border-color: var(--accent); background: rgba(0,0,0,0.6); box-shadow: 0 0 15px rgba(212, 175, 106, 0.1); }
+    .calc-field input:focus { border-color: var(--accent); background: rgba(0,0,0,0.8); box-shadow: 0 0 20px rgba(212, 175, 106, 0.15); }
     .calc-btn {
-      padding: 0.85rem 2.2rem; background: var(--accent); color: var(--black);
+      padding: 0.95rem 2.5rem; background: var(--accent); color: var(--black);
       border: none; border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 0.78rem;
-      font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
-      cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap;
+      font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap;
     }
-    .calc-btn:hover { background: var(--white); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(212,175,106,0.2); }
-    .calc-hint { font-size: 0.75rem; color: #555; letter-spacing: 0.04em; line-height: 1.5; }
+    .calc-btn:hover { background: var(--white); transform: translateY(-2px); box-shadow: 0 12px 25px rgba(212,175,106,0.25); }
+    .calc-hint { font-size: 0.75rem; color: #444; letter-spacing: 0.04em; line-height: 1.5; }
 
     /* INTERACTIVE OUTPUT PLANET CARDS */
-    .planets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; background: transparent; border: none; margin-top: 2rem; }
+    .planets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem; background: transparent; border: none; margin-top: 3rem; }
     .planet-card { 
       background: var(--dark); 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-radius: 8px; border: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
     }
-    .planet-card:hover { 
-      background: var(--card); 
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px var(--glow);
-    }
-    .planet-header {
-      padding: 1.5rem; display: flex; align-items: center; gap: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-    .planet-emoji { font-size: 2.2rem; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-    .planet-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--white); font-weight: 500; letter-spacing: 0.02em; }
-    .planet-type { font-size: 0.68rem; color: var(--accent); opacity: 0.8; margin-top: 2px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .planet-header { padding: 1.8rem 1.5rem; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); }
     
-    /* NEW: PLANET FACT BLOCK STYLE */
-    .planet-fact {
-      padding: 1rem 1.5rem 0.5rem;
-      font-size: 0.8rem;
-      line-height: 1.6;
-      color: #b0b0b0;
-      border-bottom: 1px dashed rgba(255,255,255,0.05);
+    /* IDEA 2: MICRO-INTERACTION CELESTIAL PHYSICS (BOBBING ANIMATION ON HOVER) */
+    .planet-emoji { font-size: 2.4rem; line-height: 1; transition: all 0.4s ease; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+    @keyframes planetBob {
+      0% { transform: translateY(0) scale(1); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+      50% { transform: translateY(-5px) scale(1.1); filter: drop-shadow(0 15px 20px var(--glow)); }
+      100% { transform: translateY(0) scale(1); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
     }
+    .planet-card:hover .planet-emoji { animation: planetBob 2.5s ease-in-out infinite; }
+
+    .planet-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); font-weight: 500; letter-spacing: 0.02em; }
+    .planet-type { font-size: 0.68rem; color: var(--accent); opacity: 0.8; margin-top: 2px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
+    
+    .planet-fact { padding: 1.2rem 1.5rem; font-size: 0.82rem; line-height: 1.6; color: #a6a6a6; border-bottom: 1px dashed rgba(255,255,255,0.04); }
     .planet-fact strong { color: var(--accent); font-weight: 600; }
 
-    .planet-stats { padding: 1.2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 0.8rem; border-bottom: 1px solid var(--border); }
-    .planet-stat-label { font-size: 0.62rem; color: #666; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; font-weight: 600; }
+    .planet-stats { padding: 1.4rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 0.8rem; border-bottom: 1px solid var(--border); }
+    .planet-stat-label { font-size: 0.62rem; color: #555; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; }
     .planet-stat-val { font-size: 0.85rem; color: var(--light); font-weight: 500; }
-    .planet-age-row { padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.15); border-radius: 0 0 6px 6px; }
+    
+    .planet-age-row { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); border-radius: 0 0 8px 8px; }
     .planet-age-label { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
-    .planet-age-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--accent); font-weight: 600; text-shadow: 0 0 10px rgba(212,175,106,0.2); }
+    .planet-age-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--accent); font-weight: 600; text-shadow: 0 0 15px rgba(212,175,106,0.3); }
     .planet-age-val.empty { font-family: 'Syne', sans-serif; font-size: 0.75rem; color: var(--muted); font-weight: 500; text-shadow: none; }
 
     /* FOOTER DESIGN */
     footer {
-      border-top: 1px solid var(--border); background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      text-align: center; padding: 3rem 1.5rem;
-      font-size: 0.8rem; letter-spacing: 0.08em; color: var(--muted); line-height: 2; margin-top: 6rem;
+      border-top: 1px solid var(--border); background: rgba(4, 4, 4, 0.85);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      text-align: center; padding: 4rem 1.5rem;
+      font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); line-height: 2; margin-top: 8rem;
     }
     footer span { color: var(--mid); }
 
@@ -423,7 +429,7 @@
       },
       { 
         name:'Mercury', 
-        emoji:'🪨',  
+        emoji:'🪐',  
         type:'Terrestrial Planet', 
         orbitalPeriodDays:87.97,     
         distance:'0.387 AU',
