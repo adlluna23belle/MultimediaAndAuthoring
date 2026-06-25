@@ -206,6 +206,7 @@
       border: none; border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 0.78rem;
       font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;
       cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap;
+      text-decoration: none; display: inline-block; text-align: center;
     }
     .calc-btn:hover { background: var(--white); transform: translateY(-2px); box-shadow: 0 12px 25px rgba(212,175,106,0.25); }
     .calc-hint { font-size: 0.75rem; color: #444; letter-spacing: 0.04em; line-height: 1.5; }
@@ -409,6 +410,22 @@
     </div>
 
     <div class="planets-grid" id="planets-grid"></div>
+
+    <!-- NEW DOWNLOAD CONTENT SECTION -->
+    <h2 class="block-title">Project Source Files</h2>
+    <div class="block-sub">Assets &amp; Production Scripts</div>
+    <p class="body-text">Access the complete asset repository containing raw scripts, high-resolution NASA planet surface textures, and 3D environment configuration assets used in this setup.</p>
+
+    <div class="calc-box">
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>Repository Type</label>
+          <input type="text" value="Google Drive Cloud Folder" readonly style="color: var(--mid); cursor: not-allowed;" />
+        </div>
+        <a href="https://drive.google.com/drive/folders/1dPJIZpdcbV2Gc61cT5n49un4Jx9rVeUd?usp=drive_link" target="_blank" class="calc-btn">Download Scripts ›</a>
+      </div>
+      <p class="calc-hint">* Link opens securely in a new tab. Includes deployment source assets for the solar rendering configuration.</p>
+    </div>
 
   </div>
 
