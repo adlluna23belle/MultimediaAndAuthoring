@@ -38,7 +38,7 @@
       position: relative;
     }
 
-    /* IDEA 1: AMBIENT DEEP SPACE STARFIELD EFFECT */
+    /* AMBIENT DEEP SPACE STARFIELD EFFECT */
     body::before {
       content: '';
       position: fixed;
@@ -46,7 +46,6 @@
       background: 
         radial-gradient(circle at 15% 20%, rgba(212, 175, 106, 0.04) 0%, transparent 45%),
         radial-gradient(circle at 85% 75%, rgba(138, 113, 67, 0.03) 0%, transparent 50%),
-        /* Dense micro-stars */
         radial-gradient(1px 1px at 10px 30px, rgba(255,255,255,0.3), transparent),
         radial-gradient(1.5px 1.5px at 150px 80px, rgba(212,175,106,0.25), transparent),
         radial-gradient(1px 1px at 300px 290px, rgba(255,255,255,0.4), transparent),
@@ -80,111 +79,96 @@
     }
     .nav-links a:hover { color: var(--white); background: rgba(255, 255, 255, 0.03); }
 
-    /* HERO SECTION */
-    .hero {
-      padding: 8rem 3rem 6rem; border-bottom: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-    .breadcrumb { font-size: 0.68rem; color: var(--mid); margin-bottom: 2rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
-    .breadcrumb a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
-    .breadcrumb a:hover { color: var(--white); }
-
-    /* IDEA 3: KINETIC TYPOGRAPHIC MASKING FOR THE HERO HEADER */
-    .hero h1 { 
-      font-family: 'Cormorant Garamond', serif; 
-      font-size: clamp(3rem, 7.5vw, 5.8rem); 
-      font-weight: 400; 
-      line-height: 1.05; 
-      margin-bottom: 1.5rem; 
-      letter-spacing: -0.02em; 
-      background: linear-gradient(45deg, var(--white) 25%, var(--accent) 65%, var(--white) 90%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: cosmicShine 10s linear infinite;
-    }
-    @keyframes cosmicShine {
-      to { background-position: 200% center; }
-    }
-
-    .hero p { max-width: 720px; color: var(--mid); font-size: 0.95rem; line-height: 1.9; font-weight: 400; }
-
-    /* CONTENT LAYOUT */
-    .content { max-width: 1240px; margin: 0 auto; padding: 6rem 3rem; }
-    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 400; margin-top: 7rem; letter-spacing: 0.02em; }
+    /* CONTENT STRUCTURE */
+    .content { max-width: 1340px; margin: 0 auto; padding: 4rem 2rem; }
+    .block-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 400; margin-top: 6rem; letter-spacing: 0.02em; }
     .block-title:first-child { margin-top: 0; }
-    .block-sub { font-size: 0.72rem; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 3rem; display: flex; align-items: center; gap: 15px; font-weight: 700; }
+    .block-sub { font-size: 0.72rem; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 15px; font-weight: 700; }
     .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
-    .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 3rem; max-width: 800px; }
+    .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 800px; }
 
-    /* IDEA 4: VIDEO WRAPPERS WITH AMBIENT LIGHT SHADOWS */
+    /* DASHBOARD LAYOUT (Inspired by image_8ad528.jpg) */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 320px 1fr 320px;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .db-panel {
+      background: var(--dark);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .db-panel:hover {
+      border-color: rgba(212, 175, 106, 0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px var(--glow);
+    }
+
+    /* LEFT DASHBOARD: Description */
+    .db-label-tag { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    .db-desc-text { font-size: 0.92rem; line-height: 1.8; color: var(--mid); }
+
+    /* CENTER DASHBOARD: Visualizer */
+    .db-center { text-align: center; justify-content: space-between; }
+    .db-center h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); }
+    .db-center .db-sub { font-size: 0.8rem; color: var(--mid); margin-bottom: 1.5rem; margin-top: 0.2rem; }
+    
     .video-wrap { 
       border: 1px solid var(--border); 
       background: #000; 
       aspect-ratio: 16/9; 
-      margin-bottom: 1rem; 
+      margin-bottom: 1.5rem; 
       position: relative; 
       overflow: hidden; 
-      border-radius: 8px;
+      border-radius: 6px;
       box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .video-wrap::after {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      border-radius: 8px; pointer-events: none;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
-    }
-    .video-wrap:hover {
-      border-color: rgba(212, 175, 106, 0.35);
-      transform: scale(1.005);
-      box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 40px rgba(212, 175, 106, 0.06);
     }
     .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-    .video-label { font-size: 0.78rem; color: #555; margin-bottom: 4rem; letter-spacing: 0.05em; line-height: 1.6; }
-    .video-label code { background: rgba(255,255,255,0.03); padding: 2px 6px; border-radius: 3px; color: var(--accent); font-family: monospace; }
 
-    /* TOOLS GRID & GENERIC CARD STRUCTURE ARCHITECTURE */
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
-    
-    /* IDEA 5: GRADIENT Horizon BORDERS (ON HOVER TRANSLATION) */
-    .tool-card { 
-      background: var(--dark); 
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      padding: 2.2rem; border-radius: 8px;
+    .db-quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+    .db-stat-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.8rem; border-radius: 6px; text-align: center; }
+    .db-stat-box .lbl { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 700; }
+    .db-stat-box .val { font-size: 0.85rem; color: var(--light); font-weight: 600; }
+
+    /* RIGHT DASHBOARD: Tech Specs */
+    .db-right h3 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 1.5rem; }
+    .db-detail-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 1rem; border-radius: 6px; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem; }
+    .db-detail-icon { font-size: 1.2rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+    .db-detail-info .lbl { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+    .db-detail-info .val { font-size: 0.88rem; color: var(--light); font-weight: 500; margin-top: 2px; }
+
+    /* DYNAMIC HORIZONTAL SELECTOR BAR */
+    .selector-container { margin-bottom: 5rem; }
+    .selector-bar {
+      background: rgba(10, 10, 10, 0.9);
       border: 1px solid var(--border);
-      position: relative;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+      padding: 0.5rem;
+      border-radius: 40px;
+      display: flex;
+      justify-content: space-between;
+      overflow-x: auto;
+      gap: 0.4rem;
     }
-    .tool-card:hover, .module-card:hover, .planet-card:hover { 
-      background: var(--card); 
-      border-color: transparent;
-      border-image: linear-gradient(to right, var(--accent) 0%, rgba(255,255,255,0.05) 100%) 1;
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px var(--glow);
+    .selector-btn {
+      background: transparent; border: none; color: var(--mid);
+      padding: 0.6rem 1.2rem; border-radius: 30px; cursor: pointer;
+      font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 500;
+      display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; white-space: nowrap;
     }
-    .tool-icon { font-size: 1.6rem; margin-bottom: 1.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
-    .tool-name { font-weight: 600; font-size: 0.98rem; color: var(--white); margin-bottom: 0.6rem; letter-spacing: 0.03em; }
-    .tool-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.7; font-weight: 400; }
+    .selector-btn:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+    .selector-btn.active {
+      background: var(--accent); color: var(--black); font-weight: 700;
+      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.3);
+    }
 
-    /* INDIVIDUAL PLANET MODULES (3 COLUMNS) */
-    .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 5rem; }
-    .module-card { 
-      background: var(--dark); 
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border); padding: 1.8rem; border-radius: 8px;
-      display: flex; flex-direction: column; justify-content: space-between; 
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .module-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 500; letter-spacing: 0.02em; }
-    .module-card p { font-size: 0.82rem; color: var(--mid); margin-bottom: 1rem; font-weight: 400; }
-    .module-card .yt-link { 
-      display: inline-block; font-size: 0.72rem; color: var(--accent); text-decoration: none; 
-      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1.5rem; font-weight: 700; 
-      transition: all 0.3s ease; 
-    }
-    .module-card .yt-link:hover { color: var(--white); transform: translateX(4px); }
-
-    /* CALCULATOR CONTAINER */
+    /* AGE CALCULATOR CONTAINER */
     .calc-box { 
       border: 1px solid var(--border); 
       background: var(--dark); 
@@ -201,6 +185,7 @@
       transition: all 0.3s ease; outline: none;
     }
     .calc-field input:focus { border-color: var(--accent); background: rgba(0,0,0,0.8); box-shadow: 0 0 20px rgba(212, 175, 106, 0.15); }
+    
     .calc-btn {
       padding: 0.95rem 2.5rem; background: var(--accent); color: var(--black);
       border: none; border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 0.78rem;
@@ -220,14 +205,17 @@
       display: flex; flex-direction: column; justify-content: space-between;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
     }
+    .planet-card:hover {
+      background: var(--card); border-color: var(--border-hover); transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px var(--glow);
+    }
     .planet-header { padding: 1.8rem 1.5rem; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); }
     
-    /* IDEA 2: MICRO-INTERACTION CELESTIAL PHYSICS (BOBBING ANIMATION ON HOVER) */
     .planet-emoji { font-size: 2.4rem; line-height: 1; transition: all 0.4s ease; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
     @keyframes planetBob {
-      0% { transform: translateY(0) scale(1); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
-      50% { transform: translateY(-5px) scale(1.1); filter: drop-shadow(0 15px 20px var(--glow)); }
-      100% { transform: translateY(0) scale(1); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-5px) scale(1.1); }
+      100% { transform: translateY(0) scale(1); }
     }
     .planet-card:hover .planet-emoji { animation: planetBob 2.5s ease-in-out infinite; }
 
@@ -251,14 +239,13 @@
       border-top: 1px solid var(--border); background: rgba(4, 4, 4, 0.85);
       backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
       text-align: center; padding: 4rem 1.5rem;
-      font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); line-height: 2; margin-top: 8rem;
+      font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); line-height: 2; margin-top: 6rem;
     }
     footer span { color: var(--mid); }
 
-    /* RESPONSIVE LAYOUT BREAKPOINTS */
-    @media(max-width:1024px){ .module-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; } }
-    @media(max-width:768px){ .hero, .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } }
-    @media(max-width:600px){ .calc-row { flex-direction: column; align-items: stretch; } .calc-btn { text-align: center; } .module-grid { grid-template-columns: 1fr; } }
+    /* RESPONSIVE LAYOUT */
+    @media(max-width:1024px){ .dashboard { grid-template-columns: 1fr; } }
+    @media(max-width:768px){ .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } }
   </style>
 </head>
 <body>
@@ -271,129 +258,84 @@
     </div>
   </nav>
 
-  <div class="hero">
-    <div class="breadcrumb"><a href="index.html">Home</a> &rsaquo; 3D Rendering</div>
-    <h1>3D Rendering<br/>Solar System</h1>
-    <p>3D rendering is the process of converting three-dimensional digital models into two-dimensional images using simulated light, materials, and camera perspectives. This project brings the solar system to life through accurate modeling, planetary textures, and orbital mechanics.</p>
-  </div>
-
   <div class="content">
 
-    <h2 class="block-title">Final Output</h2>
-    <div class="block-sub">The Exciting Part of the Activity</div>
-    <p class="body-text">The 3D rendered solar system animation — featuring all eight planets in orbit around the Sun, with accurate relative sizing, texturing, and lighting simulation.</p>
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/6YFqLALh6io" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p class="video-label">Solar System 3D Render — Partial Output &nbsp;·&nbsp; </p>
+    <h2 class="block-title">Celestial Bodies</h2>
+    <div class="block-sub">Interactive 3D Simulation Preview</div>
 
-    <h2 class="block-title">Tools &amp; Technologies</h2>
-    <div class="block-sub">Production Stack</div>
-    <p class="body-text">The following tools and concepts were used in the production of the 3D solar system rendering project.</p>
-    <div class="tools-grid">
-      <div class="tool-card"><div class="tool-icon">🎛️</div><div class="tool-name">3D Modeling Software</div><div class="tool-desc">Used to create spherical meshes for each celestial body, set orbital paths, and animate planetary rotations.</div></div>
-      <div class="tool-card"><div class="tool-icon">💡</div><div class="tool-name">Lighting &amp; Shading</div><div class="tool-desc">Point lights simulate the Sun's radiance. Ambient and directional lights create depth and realistic shadow casting.</div></div>
-      <div class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Texture Mapping</div><div class="tool-desc">High-resolution planetary surface maps (NASA textures) were UV-mapped onto spherical geometry for photorealism.</div></div>
-      <div class="tool-card"><div class="tool-icon">📷</div><div class="tool-name">Camera &amp; Composition</div><div class="tool-desc">Animated camera paths orbit the scene to showcase each planet, using depth-of-field to focus attention.</div></div>
-      <div class="tool-card"><div class="tool-icon">⚙️</div><div class="tool-name">Rendering Engine</div><div class="tool-desc">A ray-tracing or rasterization engine computes the final image, converting 3D geometry to 2D pixels with realistic light bounce.</div></div>
-      <div class="tool-card"><div class="tool-icon">🎬</div><div class="tool-name">Video Compositing</div><div class="tool-desc">Rendered frames were composited into a final video, with color grading applied for a cinematic space atmosphere.</div></div>
-    </div>
-
-    <h2 class="block-title">Individual Planet</h2>
-    <div class="block-sub">Say Hello to each Planet we have in Solar System!</div>
-
-    <div class="module-grid">
-      <div class="module-card">
-        <h4>Sun</h4>
-        <p>Short clip of Sun.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/JwpHdZ182H4" allowfullscreen></iframe>
-        </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=JwpHdZ182H4" target="_blank">Watch on YouTube &rarr;</a>
-      </div>
-
-      <div class="module-card">
-        <h4>Moon</h4>
-        <p>Short clip of Moon.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/NdCrv3UaCkE" allowfullscreen></iframe>
-        </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=NdCrv3UaCkE" target="_blank">Watch on YouTube &rarr;</a>
-      </div>
+    <!-- MAIN DASHBOARD CONFIGURATION FROM IMAGE -->
+    <div class="dashboard">
       
-      <div class="module-card">
-        <h4>Planet Mercury</h4>
-        <p>Short clip of Planet Mercury.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/9d1nIlKY7PM" allowfullscreen></iframe>
-        </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=9d1nIlKY7PM" target="_blank">Watch on YouTube &rarr;</a>
+      <!-- LEFT PANEL: Dynamic Description -->
+      <div class="db-panel db-left">
+        <div class="db-label-tag">Description</div>
+        <div class="db-desc-text" id="db-description">Loading descriptive text data...</div>
       </div>
 
-      <div class="module-card">
-        <h4>Planet Venus</h4>
-        <p>Short clip of Planet Venus.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/r7LwO4q33oU" allowfullscreen></iframe>
+      <!-- CENTER PANEL: Unified Video Display Frame -->
+      <div class="db-panel db-center">
+        <div>
+          <h2 id="db-title">Venus</h2>
+          <div class="db-sub">Explore this celestial body and discover key orbital and physical properties.</div>
         </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=r7LwO4q33oU" target="_blank">Watch on YouTube &rarr;</a>
-      </div>
-      
-      <div class="module-card">
-        <h4>Planet Earth</h4>
-        <p>Short clip of Planet Earth.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/4c_Bh_1V9rQ" allowfullscreen></iframe>
+        
+        <div class="video-wrap">
+          <iframe id="db-video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=4c_Bh_1V9rQ" target="_blank">Watch on YouTube &rarr;</a>
+
+        <div class="db-quick-stats">
+          <div class="db-stat-box">
+            <div class="lbl">Diameter</div>
+            <div class="val" id="db-stat-diameter">—</div>
+          </div>
+          <div class="db-stat-box">
+            <div class="lbl">Orbital Period</div>
+            <div class="val" id="db-stat-orbital">—</div>
+          </div>
+          <div class="db-stat-box">
+            <div class="lbl">Moons</div>
+            <div class="val" id="db-stat-moons">—</div>
+          </div>
+        </div>
       </div>
 
-      <div class="module-card">
-        <h4>Planet Mars</h4>
-        <p>Short clip of Planet Mars.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/6qFHlGP7dTI" allowfullscreen></iframe>
+      <!-- RIGHT PANEL: Expanded Tech Details Spec List -->
+      <div class="db-panel db-right">
+        <h3>Other Details</h3>
+        
+        <div class="db-detail-item">
+          <div class="db-detail-icon">📍</div>
+          <div class="db-detail-info">
+            <div class="lbl">Distance from Sun</div>
+            <div class="val" id="db-detail-distance">—</div>
+          </div>
         </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=6qFHlGP7dTI" target="_blank">Watch on YouTube &rarr;</a>
+
+        <div class="db-detail-item">
+          <div class="db-detail-icon">🔄</div>
+          <div class="db-detail-info">
+            <div class="lbl">Rotation Period</div>
+            <div class="val" id="db-detail-rotation">—</div>
+          </div>
+        </div>
+
+        <div class="db-detail-item">
+          <div class="db-detail-icon">🌡️</div>
+          <div class="db-detail-info">
+            <div class="lbl">Temperature</div>
+            <div class="val" id="db-detail-temp">—</div>
+          </div>
+        </div>
       </div>
 
-      <div class="module-card">
-        <h4>Planet Jupiter</h4>
-        <p>Short clip of Planet Jupiter.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/yBtIdt0uul4" allowfullscreen></iframe>
-        </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=yBtIdt0uul4" target="_blank">Watch on YouTube &rarr;</a>
-      </div>
-
-      <div class="module-card">
-        <h4>Planet Saturn</h4>
-        <p>Short clip of Planet Saturn.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/npxKQcKfaUg" allowfullscreen></iframe>
-        </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=npxKQcKfaUg" target="_blank">Watch on YouTube &rarr;</a>
-      </div>
-
-      <div class="module-card">
-        <h4>Planet Uranus</h4>
-        <p>Short clip of Planet Uranus.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/4TB5_WsxaFU" allowfullscreen></iframe>
-        </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=4TB5_WsxaFU" target="_blank">Watch on YouTube &rarr;</a>
-      </div>
-
-      <div class="module-card">
-        <h4>Planet Neptune</h4>
-        <p>Short clip of Planet Neptune.</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-          <iframe src="https://www.youtube.com/embed/HzII04BXK1k" allowfullscreen></iframe>
-        </div>
-        <a class="yt-link" href="https://www.youtube.com/watch?v=HzII04BXK1k" target="_blank">Watch on YouTube &rarr;</a>
-      </div>
     </div>
-    
+
+    <!-- HORIZONTAL CLICKABLE NAV SELECTOR BAR -->
+    <div class="selector-container">
+      <div class="selector-bar" id="selector-bar"></div>
+    </div>
+
+    <!-- THE ORIGINAL PLANETARY AGE CALCULATOR (UNTOUCHED COLOR & LOGIC) -->
     <h2 class="block-title">Planetary Age Calculator</h2>
     <div class="block-sub">Interactive Tool</div>
     <p class="body-text">Every planet takes a different amount of time to orbit the Sun — meaning your age is different on each one. Enter your Earth age to see how old you are across the solar system.</p>
@@ -411,22 +353,6 @@
 
     <div class="planets-grid" id="planets-grid"></div>
 
-    <!-- NEW DOWNLOAD CONTENT SECTION -->
-    <h2 class="block-title">Project Source Files</h2>
-    <div class="block-sub">Assets &amp; Production Scripts</div>
-    <p class="body-text">Access the complete asset repository containing raw scripts, high-resolution NASA planet surface textures, and 3D environment configuration assets used in this setup.</p>
-
-    <div class="calc-box">
-      <div class="calc-row">
-        <div class="calc-field">
-          <label>Repository Type</label>
-          <input type="text" value="Google Drive Cloud Folder" readonly style="color: var(--mid); cursor: not-allowed;" />
-        </div>
-        <a href="https://drive.google.com/drive/folders/1dPJIZpdcbV2Gc61cT5n49un4Jx9rVeUd?usp=drive_link" target="_blank" class="calc-btn">Download Scripts ›</a>
-      </div>
-      <p class="calc-hint">* Link opens securely in a new tab. Includes deployment source assets for the solar rendering configuration.</p>
-    </div>
-
   </div>
 
   <footer>
@@ -435,86 +361,105 @@
   </footer>
 
   <script>
-    const planets = [
+    // Database maintaining exact old properties + newly needed sizing specs mapped with your YouTube Embed tokens
+    const celestialData = [
       { 
-        name:'Sun',      
-        emoji:'☀️',  
-        type:'Star',                
-        orbitalPeriodDays:365.25,   
-        distance:'0 AU — center',
+        id: 'sun', name: 'Sun', emoji: '☀️', type: 'Star',
+        youtubeId: 'JwpHdZ182H4', orbitalPeriodDays: 365.25, distance: '0 AU — center',
+        diameter: '1,392,700 km', moons: '0', rotation: '25-35 Days', temp: '5,500°C',
         fact: 'The heart of our solar system. It accounts for <strong>99.8%</strong> of the total system mass and sustains all planetary life through nuclear fusion.'
       },
       { 
-        name:'Mercury', 
-        emoji:'⚪',  
-        type:'Terrestrial Planet', 
-        orbitalPeriodDays:87.97,     
-        distance:'0.387 AU',
+        id: 'mercury', name: 'Mercury', emoji: '⚪', type: 'Terrestrial Planet',
+        youtubeId: '9d1nIlKY7PM', orbitalPeriodDays: 87.97, distance: '0.387 AU',
+        diameter: '4,879 km', moons: '0', rotation: '59 Earth days', temp: '-180°C to 430°C',
         fact: 'The smallest planet and closest to the Sun. It experiences extreme temperature swings, from <strong>430°C</strong> during the day to <strong>-180°C</strong> at night.'
       },
       { 
-        name:'Venus',   
-        emoji:'🌕',  
-        type:'Terrestrial Planet', 
-        orbitalPeriodDays:224.70,   
-        distance:'0.723 AU',
-        fact: 'Earth\'s "twin" in size, but plagued by a runaway greenhouse effect. Its thick toxic atmosphere makes it the <strong>hottest planet</strong> in the system.'
+        id: 'venus', name: 'Venus', emoji: '🌕', type: 'Terrestrial Planet',
+        youtubeId: 'r7LwO4q33oU', orbitalPeriodDays: 224.70, distance: '0.723 AU',
+        diameter: '12,104 km', moons: '0', rotation: '243 Earth days (retrograde)', temp: '462°C',
+        fact: 'Venus is the hottest planet in our solar system, with surface temperatures reaching 462°C — hot enough to melt lead. Its thick atmosphere is composed almost entirely of carbon dioxide, creating a runaway greenhouse effect.'
       },
       { 
-        name:'Earth',   
-        emoji:'🌍',  
-        type:'Terrestrial Planet', 
-        orbitalPeriodDays:365.25,   
-        distance:'1.000 AU',
+        id: 'earth', name: 'Earth', emoji: '🌍', type: 'Terrestrial Planet',
+        youtubeId: '4c_Bh_1V9rQ', orbitalPeriodDays: 365.25, distance: '1.000 AU',
+        diameter: '12,742 km', moons: '1', rotation: '24 Hours', temp: '15°C (Avg)',
         fact: 'Our home base. It is the only known celestial body capable of harboring life, uniquely maintaining stable <strong>liquid water oceans</strong>.'
       },
       { 
-        name:'Mars',    
-        emoji:'🔴',  
-        type:'Terrestrial Planet', 
-        orbitalPeriodDays:686.97,   
-        distance:'1.524 AU',
+        id: 'mars', name: 'Mars', emoji: '🔴', type: 'Terrestrial Planet',
+        youtubeId: '6qFHlGP7dTI', orbitalPeriodDays: 686.97, distance: '1.524 AU',
+        diameter: '6,779 km', moons: '2', rotation: '24.6 Hours', temp: '-62°C',
         fact: 'The Red Planet. Iron oxide on its surface gives it a rusty color. It features <strong>Olympus Mons</strong>, the largest volcano in our solar system.'
       },
       { 
-        name:'Jupiter', emoji:'🟠',  
-        type:'Gas Giant',          
-        orbitalPeriodDays:4332.59,  
-        distance:'5.203 AU',
+        id: 'jupiter', name: 'Jupiter', emoji: '🟠', type: 'Gas Giant',
+        youtubeId: 'yBtIdt0uul4', orbitalPeriodDays: 4332.59, distance: '5.203 AU',
+        diameter: '139,820 km', moons: '95', rotation: '9.9 Hours', temp: '-108°C',
         fact: 'The king of the planets. This massive gas giant is twice as heavy as all other planets combined and holds a centuries-old storm: <strong>The Great Red Spot</strong>.'
       },
       { 
-        name:'Saturn',  
-        emoji:'🪐',  
-        type:'Gas Giant',          
-        orbitalPeriodDays:10759.22, 
-        distance:'9.537 AU',
+        id: 'saturn', name: 'Saturn', emoji: '🪐', type: 'Gas Giant',
+        youtubeId: 'npxKQcKfaUg', orbitalPeriodDays: 10759.22, distance: '9.537 AU',
+        diameter: '116,460 km', moons: '146', rotation: '10.7 Hours', temp: '-139°C',
         fact: 'Famous for its highly extensive and spectacular <strong>ring system</strong> made up of billions of chunks of ice, rocky debris, and cosmic dust.'
       },
       { 
-        name:'Uranus',  
-        emoji:'🔵',  
-        type:'Ice Giant',          
-        orbitalPeriodDays:30688.50, 
-        distance:'19.19 AU',
+        id: 'uranus', name: 'Uranus', emoji: '🔵', type: 'Ice Giant',
+        youtubeId: '4TB5_WsxaFU', orbitalPeriodDays: 30688.50, distance: '19.19 AU',
+        diameter: '50,724 km', moons: '28', rotation: '17.2 Hours', temp: '-197°C',
         fact: 'An ice giant with a unique orientation. It is the only planet that rotates completely <strong>on its side</strong>, likely due to an ancient planetary collision.'
       },
       { 
-        name:'Neptune', 
-        emoji:'🫧',  
-        type:'Ice Giant',          
-        orbitalPeriodDays:60195.00, 
-        distance:'30.07 AU',
+        id: 'neptune', name: 'Neptune', emoji: '🫧', type: 'Ice Giant',
+        youtubeId: 'HzII04BXK1k', orbitalPeriodDays: 60195.00, distance: '30.07 AU',
+        diameter: '49,244 km', moons: '16', rotation: '16.1 Hours', temp: '-201°C',
         fact: 'The most distant planet from the Sun. It is a freezing world swept by supersonic winds that reach speeds of up to <strong>2,100 kilometers per hour</strong>.'
-      },
+      }
     ];
 
+    // FUNCTION TO UPDATE DASHBOARD CONTENTS INTERACTIVELY
+    function changeDashboardTarget(id) {
+      const target = celestialData.find(item => item.id === id);
+      if(!target) return;
+
+      document.getElementById('db-title').innerText = target.name;
+      document.getElementById('db-description').innerHTML = target.fact;
+      document.getElementById('db-video-player').src = `https://www.youtube.com/embed/${target.youtubeId}?autoplay=1&mute=1`;
+      
+      // Metric fields updates
+      document.getElementById('db-stat-diameter').innerText = target.diameter;
+      document.getElementById('db-stat-orbital').innerText = target.orbitalPeriodDays >= 365.25 ? (target.orbitalPeriodDays/365.25).toFixed(1) + ' yrs' : target.orbitalPeriodDays + ' days';
+      document.getElementById('db-stat-moons').innerText = target.moons;
+      
+      // Side list fields updates
+      document.getElementById('db-detail-distance').innerText = target.distance;
+      document.getElementById('db-detail-rotation').innerText = target.rotation;
+      document.getElementById('db-detail-temp').innerText = target.temp;
+
+      // Handle active button state classes toggles
+      document.querySelectorAll('.selector-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${id}`).classList.add('active');
+    }
+
+    // GENERATE THE CLICKABLE HORIZONTAL BUTTONS dynamically
+    function setupSelectorBar() {
+      const bar = document.getElementById('selector-bar');
+      bar.innerHTML = celestialData.map(p => `
+        <button class="selector-btn" id="btn-${p.id}" onclick="changeDashboardTarget('${p.id}')">
+          <span>${p.emoji}</span> ${p.name}
+        </button>
+      `).join('');
+    }
+
+    // ORIGINAL AGE CALCULATOR RENDERING FUNCTION (UNTOUCHED)
     function renderCards(earthAge) {
       const grid = document.getElementById('planets-grid');
       const hasAge = earthAge !== null && !isNaN(earthAge);
       const earthDays = hasAge ? earthAge * 365.25 : null;
 
-      grid.innerHTML = planets.map(p => {
+      grid.innerHTML = celestialData.map(p => {
         const periodYears = p.orbitalPeriodDays / 365.25;
         const periodFmt = periodYears >= 1
           ? periodYears.toFixed(2) + ' Earth yrs'
@@ -587,7 +532,10 @@
       if (e.key === 'Enter') calculateAges();
     });
 
+    // RUN THE RUNTIME SETUP
+    setupSelectorBar();
     renderCards(null);
+    changeDashboardTarget('venus'); // Sets Venus as standard on page load like image_8ad528.jpg
   </script>
 
 </body>
