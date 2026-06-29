@@ -87,12 +87,67 @@
     .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
     .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 800px; }
 
+    /* NEW ADDITION: OUTER CARD EMBED CONTAINER (Inspired by the Image) */
+    .render-outer-card {
+      background: #090610; /* Very dark purple/indigo hue matching the photo */
+      border: 1px solid rgba(228, 143, 237, 0.15); /* Soft pinkish tint border */
+      border-radius: 20px;
+      padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+    .render-card-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .render-card-header .top-lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: #e48fed; /* Pink accent */
+      font-weight: 800;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .render-card-header h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .render-card-header p {
+      font-size: 0.88rem;
+      color: #797193;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* MINI FINAL RENDER PLACARD INSIDE THE WRAPPER */
+    .placard-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 1rem;
+    }
+
     /* DASHBOARD LAYOUT */
     .dashboard {
       display: grid;
       grid-template-columns: 320px 1fr 320px;
       gap: 1.5rem;
-      margin-bottom: 2rem;
     }
 
     .db-panel {
@@ -245,7 +300,7 @@
 
     /* RESPONSIVE LAYOUT */
     @media(max-width:1024px){ .dashboard { grid-template-columns: 1fr; } }
-    @media(max-width:768px){ .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } }
+    @media(max-width:768px){ .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } .render-outer-card { padding: 2rem 1.2rem 1.2rem 1.2rem; } }
   </style>
 </head>
 <body>
@@ -263,69 +318,78 @@
     <h2 class="block-title">Celestial Bodies</h2>
     <div class="block-sub">Interactive 3D Simulation Preview</div>
 
-    <div class="dashboard">
-      
-      <div class="db-panel db-left">
-        <div class="db-label-tag">Description</div>
-        <div class="db-desc-text" id="db-description">Loading descriptive text data...</div>
+    <div class="render-outer-card">
+      <div class="render-card-header">
+        <span class="top-lbl">Final Output</span>
+        <h3>Solar System Animation</h3>
+        <p>Watch the complete solar system animation rendered in Blender with Python-driven orbital mechanics.</p>
       </div>
 
-      <div class="db-panel db-center">
-        <div>
-          <h2 id="db-title">Venus</h2>
-          <div class="db-sub">Explore this celestial body and discover key orbital and physical properties.</div>
-        </div>
+      <div class="placard-tag">🚀 Final Render</div>
+
+      <div class="dashboard">
         
-        <div class="video-wrap">
-          <iframe id="db-video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="db-panel db-left">
+          <div class="db-label-tag">Description</div>
+          <div class="db-desc-text" id="db-description">Loading descriptive text data...</div>
         </div>
 
-        <div class="db-quick-stats">
-          <div class="db-stat-box">
-            <div class="lbl">Diameter</div>
-            <div class="val" id="db-stat-diameter">—</div>
+        <div class="db-panel db-center">
+          <div>
+            <h2 id="db-title">Venus</h2>
+            <div class="db-sub">Explore this celestial body and discover key orbital and physical properties.</div>
           </div>
-          <div class="db-stat-box">
-            <div class="lbl">Orbital Period</div>
-            <div class="val" id="db-stat-orbital">—</div>
+          
+          <div class="video-wrap">
+            <iframe id="db-video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-          <div class="db-stat-box">
-            <div class="lbl">Moons</div>
-            <div class="val" id="db-stat-moons">—</div>
+
+          <div class="db-quick-stats">
+            <div class="db-stat-box">
+              <div class="lbl">Diameter</div>
+              <div class="val" id="db-stat-diameter">—</div>
+            </div>
+            <div class="db-stat-box">
+              <div class="lbl">Orbital Period</div>
+              <div class="val" id="db-stat-orbital">—</div>
+            </div>
+            <div class="db-stat-box">
+              <div class="lbl">Moons</div>
+              <div class="val" id="db-stat-moons">—</div>
+            </div>
           </div>
         </div>
+
+        <div class="db-panel db-right">
+          <h3>Other Details</h3>
+          
+          <div class="db-detail-item">
+            <div class="db-detail-icon">📍</div>
+            <div class="db-detail-info">
+              <div class="lbl">Distance from Sun</div>
+              <div class="val" id="db-detail-distance">—</div>
+            </div>
+          </div>
+
+          <div class="db-detail-item">
+            <div class="db-detail-icon">⚖️</div>
+            <div class="db-detail-info">
+              <div class="lbl">Mass (Weight Size)</div>
+              <div class="val" id="db-detail-mass">—</div>
+            </div>
+          </div>
+
+          <div class="db-detail-item">
+            <div class="db-detail-icon">🌡️</div>
+            <div class="db-detail-info">
+              <div class="lbl">Temperature</div>
+              <div class="val" id="db-detail-temp">—</div>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <div class="db-panel db-right">
-        <h3>Other Details</h3>
-        
-        <div class="db-detail-item">
-          <div class="db-detail-icon">📍</div>
-          <div class="db-detail-info">
-            <div class="lbl">Distance from Sun</div>
-            <div class="val" id="db-detail-distance">—</div>
-          </div>
-        </div>
-
-        <div class="db-detail-item">
-          <div class="db-detail-icon">⚖️</div>
-          <div class="db-detail-info">
-            <div class="lbl">Mass (Weight Size)</div>
-            <div class="val" id="db-detail-mass">—</div>
-          </div>
-        </div>
-
-        <div class="db-detail-item">
-          <div class="db-detail-icon">🌡️</div>
-          <div class="db-detail-info">
-            <div class="lbl">Temperature</div>
-            <div class="val" id="db-detail-temp">—</div>
-          </div>
-        </div>
-      </div>
-
     </div>
-
     <div class="selector-container">
       <div class="selector-bar" id="selector-bar"></div>
     </div>
@@ -433,7 +497,7 @@
       document.getElementById('db-stat-orbital').innerText = target.orbitalPeriodDays >= 365.25 ? (target.orbitalPeriodDays/365.25).toFixed(1) + ' yrs' : target.orbitalPeriodDays + ' days';
       document.getElementById('db-stat-moons').innerText = target.moons;
       
-      // Side list fields updates (Dito binago ang reference mula rotation patungong mass)
+      // Side list fields updates
       document.getElementById('db-detail-distance').innerText = target.distance;
       document.getElementById('db-detail-mass').innerText = target.mass;
       document.getElementById('db-detail-temp').innerText = target.temp;
