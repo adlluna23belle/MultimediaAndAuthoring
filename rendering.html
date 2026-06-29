@@ -87,7 +87,7 @@
     .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
     .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 800px; }
 
-    /* NEW SECTION STYLING (Based on guide image) */
+    /* UPPER SECTION STYLING */
     .showcase-banner {
       background: var(--dark);
       backdrop-filter: blur(12px);
@@ -148,12 +148,89 @@
       display: block;
     }
 
+    /* BLENDER TUTORIAL GRID SECTION */
+    .tutorial-container {
+      background: var(--dark);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 4rem;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tutorial-container:hover {
+      border-color: rgba(212, 175, 106, 0.15);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+    }
+    .tutorial-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+    }
+    .tutorial-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .tutorial-desc {
+      font-size: 0.86rem;
+      letter-spacing: 0.02em;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    .tutorial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .step-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.8rem;
+      transition: all 0.4s ease;
+    }
+    .step-card:hover {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(212, 175, 106, 0.25);
+      transform: translateY(-3px);
+    }
+    .step-num {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .step-heading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.01em;
+    }
+    .step-body {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--mid);
+    }
+    .step-body strong {
+      color: var(--light);
+      font-weight: 600;
+    }
+
     /* DASHBOARD LAYOUT */
     .dashboard {
       display: grid;
-      grid-template-columns: 320px 1fr 320px;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: 210px 260px 1fr 260px 210px;
+      gap: 1.2rem;
+      margin-bottom: 5rem;
     }
 
     .db-panel {
@@ -162,7 +239,7 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 2rem;
+      padding: 1.8rem;
       display: flex;
       flex-direction: column;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -172,20 +249,45 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px var(--glow);
     }
 
+    /* SIDEBAR NAVIGATION BUTTON TRACKS */
+    .db-selector-track {
+      background: rgba(6, 6, 6, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .selector-btn {
+      background: transparent; border: 1px solid transparent; color: var(--mid);
+      padding: 0.75rem 1rem; border-radius: 6px; cursor: pointer;
+      font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 500;
+      display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;
+      text-align: left; width: 100%;
+    }
+    .selector-btn span { font-size: 1.1rem; }
+    .selector-btn:hover { color: var(--white); background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.05); }
+    .selector-btn.active {
+      background: rgba(212, 175, 106, 0.1); color: var(--accent); font-weight: 700;
+      border-color: rgba(212, 175, 106, 0.3);
+      box-shadow: inset 0 0 12px rgba(212, 175, 106, 0.05);
+    }
+
     /* LEFT PANEL: Description */
     .db-label-tag { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-    .db-desc-text { font-size: 0.92rem; line-height: 1.8; color: var(--mid); }
+    .db-desc-text { font-size: 0.88rem; line-height: 1.7; color: var(--mid); }
 
     /* CENTER PANEL: Visualizer */
     .db-center { text-align: center; justify-content: space-between; }
-    .db-center h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); }
-    .db-center .db-sub { font-size: 0.8rem; color: var(--mid); margin-bottom: 1.5rem; margin-top: 0.2rem; }
+    .db-center h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); }
+    .db-center .db-sub { font-size: 0.78rem; color: var(--mid); margin-bottom: 1.2rem; margin-top: 0.2rem; }
      
     .video-wrap { 
       border: 1px solid var(--border); 
       background: #000; 
       aspect-ratio: 16/9; 
-      margin-bottom: 1.5rem; 
+      margin-bottom: 1.2rem; 
       position: relative; 
       overflow: hidden; 
       border-radius: 6px;
@@ -193,41 +295,17 @@
     }
     .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
 
-    .db-quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
-    .db-stat-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.8rem; border-radius: 6px; text-align: center; }
-    .db-stat-box .lbl { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 700; }
-    .db-stat-box .val { font-size: 0.85rem; color: var(--light); font-weight: 600; }
+    .db-quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+    .db-stat-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.7rem; border-radius: 6px; text-align: center; }
+    .db-stat-box .lbl { font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 700; }
+    .db-stat-box .val { font-size: 0.8rem; color: var(--light); font-weight: 600; }
 
     /* RIGHT PANEL: Technical Details */
     .db-right h3 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 1.5rem; }
-    .db-detail-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 1rem; border-radius: 6px; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem; }
-    .db-detail-icon { font-size: 1.2rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-    .db-detail-info .lbl { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
-    .db-detail-info .val { font-size: 0.88rem; color: var(--light); font-weight: 500; margin-top: 2px; }
-
-    /* DYNAMIC HORIZONTAL SELECTOR BAR */
-    .selector-container { margin-bottom: 5rem; }
-    .selector-bar {
-      background: rgba(10, 10, 10, 0.9);
-      border: 1px solid var(--border);
-      padding: 0.5rem;
-      border-radius: 40px;
-      display: flex;
-      justify-content: space-between;
-      overflow-x: auto;
-      gap: 0.4rem;
-    }
-    .selector-btn {
-      background: transparent; border: none; color: var(--mid);
-      padding: 0.6rem 1.2rem; border-radius: 30px; cursor: pointer;
-      font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 500;
-      display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; white-space: nowrap;
-    }
-    .selector-btn:hover { color: var(--white); background: rgba(255,255,255,0.03); }
-    .selector-btn.active {
-      background: var(--accent); color: var(--black); font-weight: 700;
-      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.3);
-    }
+    .db-detail-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.9rem; border-radius: 6px; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.8rem; }
+    .db-detail-icon { font-size: 1.1rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+    .db-detail-info .lbl { font-size: 0.58rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+    .db-detail-info .val { font-size: 0.84rem; color: var(--light); font-weight: 500; margin-top: 2px; }
 
     /* AGE CALCULATOR CONTAINER */
     .calc-box { 
@@ -305,8 +383,18 @@
     footer span { color: var(--mid); }
 
     /* RESPONSIVE LAYOUT */
-    @media(max-width:1024px){ .dashboard { grid-template-columns: 1fr; } }
-    @media(max-width:768px){ .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } }
+    @media(max-width:1300px){ 
+      .dashboard { grid-template-columns: 1fr 1fr; } 
+      .db-selector-track { grid-column: span 2; flex-direction: row; overflow-x: auto; } 
+      .tutorial-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width:768px) { 
+      .dashboard { grid-template-columns: 1fr; } 
+      .db-selector-track { grid-column: span 1; } 
+      .tutorial-grid { grid-template-columns: 1fr; }
+      .content { padding-left: 1.5rem; padding-right: 1.5rem; } 
+      nav { padding: 0 1.5rem; } 
+    }
   </style>
 </head>
 <body>
@@ -332,11 +420,59 @@
       </div>
     </div>
 
+    <div class="tutorial-container">
+      <div class="tutorial-header">
+        <h2 class="tutorial-title">Blender Tutorial</h2>
+        <p class="tutorial-desc">Step-by-step workflow for creating a planet animation and publishing it to your website.</p>
+      </div>
+      
+      <div class="tutorial-grid">
+        <div class="step-card">
+          <span class="step-num">Step 1</span>
+          <h3 class="step-heading">Install BlenderKit</h3>
+          <p class="step-body">Download BlenderKit, then open <strong>Edit &gt; Preferences &gt; Add-ons</strong> in Blender and enable <strong>BlenderKit</strong>.</p>
+        </div>
+        
+        <div class="step-card">
+          <span class="step-num">Step 2</span>
+          <h3 class="step-heading">Import Planet + HDRI</h3>
+          <p class="step-body">Press <strong>N</strong> to open the sidebar, go to the BlenderKit tab, then search for a <strong>planet model</strong> and an <strong>HDRI background</strong>.</p>
+        </div>
+        
+        <div class="step-card">
+          <span class="step-num">Step 3</span>
+          <h3 class="step-heading">Add Animation Script</h3>
+          <p class="step-body">Open the <strong>Scripting</strong> workspace, paste a Python script for orbital/rotation animation, and run it to generate movement.</p>
+        </div>
+        
+        <div class="step-card">
+          <span class="step-num">Step 4</span>
+          <h3 class="step-heading">Frame the Camera</h3>
+          <p class="step-body">Set your camera angle and focus so the planet stays centered and cinematic throughout the animation.</p>
+        </div>
+        
+        <div class="step-card">
+          <span class="step-num">Step 5</span>
+          <h3 class="step-heading">Render the Animation</h3>
+          <p class="step-body">Configure render settings (resolution, FPS, output format), then press <strong>Ctrl + F12</strong> or use <strong>Render &gt; Render Animation</strong>.</p>
+        </div>
+        
+        <div class="step-card">
+          <span class="step-num">Step 6</span>
+          <h3 class="step-heading">Publish on Your Website</h3>
+          <p class="step-body">Export the final video, upload/embed it in your project page, and add a short description of your workflow and tools used.</p>
+        </div>
+      </div>
+    </div>
+
+
     <h2 class="block-title">Celestial Bodies</h2>
     <div class="block-sub">Interactive 3D Simulation Preview</div>
 
     <div class="dashboard">
        
+      <div class="db-selector-track" id="selector-left"></div>
+
       <div class="db-panel db-left">
         <div class="db-label-tag">Description</div>
         <div class="db-desc-text" id="db-description">Loading descriptive text data...</div>
@@ -396,10 +532,8 @@
         </div>
       </div>
 
-    </div>
+      <div class="db-selector-track" id="selector-right"></div>
 
-    <div class="selector-container">
-      <div class="selector-bar" id="selector-bar"></div>
     </div>
 
     <h2 class="block-title">Planetary Age Calculator</h2>
@@ -515,15 +649,28 @@
       document.getElementById('db-detail-mass').innerText = target.mass;
       document.getElementById('db-detail-temp').innerText = target.temp;
 
-      // Handle active button state classes toggles
+      // Handle active button state classes toggles across both side tracks
       document.querySelectorAll('.selector-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`btn-${id}`).classList.add('active');
+      const activeBtn = document.getElementById(`btn-${id}`);
+      if(activeBtn) activeBtn.classList.add('active');
     }
 
-    // GENERATE THE CLICKABLE HORIZONTAL BUTTONS
-    function setupSelectorBar() {
-      const bar = document.getElementById('selector-bar');
-      bar.innerHTML = celestialData.map(p => `
+    // GENERATE SPLIT SIDEBAR SELECTION BUTTON TRACKS
+    function setupSelectorTracks() {
+      const leftTrack = document.getElementById('selector-left');
+      const rightTrack = document.getElementById('selector-right');
+      
+      // Divide arrays conceptually (Sun to Earth vs Mars to Pluto)
+      const leftPlanets = celestialData.slice(0, 5);
+      const rightPlanets = celestialData.slice(5);
+
+      leftTrack.innerHTML = leftPlanets.map(p => `
+        <button class="selector-btn" id="btn-${p.id}" onclick="changeDashboardTarget('${p.id}')">
+          <span>${p.emoji}</span> ${p.name}
+        </button>
+      `).join('');
+
+      rightTrack.innerHTML = rightPlanets.map(p => `
         <button class="selector-btn" id="btn-${p.id}" onclick="changeDashboardTarget('${p.id}')">
           <span>${p.emoji}</span> ${p.name}
         </button>
@@ -610,7 +757,7 @@
     });
 
     // RUN THE RUNTIME SETUP
-    setupSelectorBar();
+    setupSelectorTracks();
     renderCards(null);
     changeDashboardTarget('venus'); 
   </script>
