@@ -87,7 +87,7 @@
     .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
     .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 800px; }
 
-    /* DASHBOARD LAYOUT (Inspired by image_8ad528.jpg) */
+    /* DASHBOARD LAYOUT */
     .dashboard {
       display: grid;
       grid-template-columns: 320px 1fr 320px;
@@ -263,16 +263,13 @@
     <h2 class="block-title">Celestial Bodies</h2>
     <div class="block-sub">Interactive 3D Simulation Preview</div>
 
-    <!-- MAIN DASHBOARD CONFIGURATION FROM IMAGE -->
     <div class="dashboard">
       
-      <!-- LEFT PANEL: Dynamic Description -->
       <div class="db-panel db-left">
         <div class="db-label-tag">Description</div>
         <div class="db-desc-text" id="db-description">Loading descriptive text data...</div>
       </div>
 
-      <!-- CENTER PANEL: Unified Video Display Frame -->
       <div class="db-panel db-center">
         <div>
           <h2 id="db-title">Venus</h2>
@@ -299,7 +296,6 @@
         </div>
       </div>
 
-      <!-- RIGHT PANEL: Expanded Tech Details Spec List -->
       <div class="db-panel db-right">
         <h3>Other Details</h3>
         
@@ -330,12 +326,10 @@
 
     </div>
 
-    <!-- HORIZONTAL CLICKABLE NAV SELECTOR BAR -->
     <div class="selector-container">
       <div class="selector-bar" id="selector-bar"></div>
     </div>
 
-    <!-- THE ORIGINAL PLANETARY AGE CALCULATOR (UNTOUCHED COLOR & LOGIC) -->
     <h2 class="block-title">Planetary Age Calculator</h2>
     <div class="block-sub">Interactive Tool</div>
     <p class="body-text">Every planet takes a different amount of time to orbit the Sun — meaning your age is different on each one. Enter your Earth age to see how old you are across the solar system.</p>
@@ -361,7 +355,7 @@
   </footer>
 
   <script>
-    // Database maintaining exact old properties + newly needed sizing specs mapped with your YouTube Embed tokens
+    // Updated database structure incorporating new Shorts IDs and Pluto configuration
     const celestialData = [
       { 
         id: 'sun', name: 'Sun', emoji: '☀️', type: 'Star',
@@ -395,27 +389,33 @@
       },
       { 
         id: 'jupiter', name: 'Jupiter', emoji: '🟠', type: 'Gas Giant',
-        youtubeId: 'yBtIdt0uul4', orbitalPeriodDays: 4332.59, distance: '5.203 AU',
+        youtubeId: 'F1_YUmaBheY', orbitalPeriodDays: 4332.59, distance: '5.203 AU',
         diameter: '139,820 km', moons: '95', rotation: '9.9 Hours', temp: '-108°C',
         fact: 'The king of the planets. This massive gas giant is twice as heavy as all other planets combined and holds a centuries-old storm: <strong>The Great Red Spot</strong>.'
       },
       { 
         id: 'saturn', name: 'Saturn', emoji: '🪐', type: 'Gas Giant',
-        youtubeId: 'npxKQcKfaUg', orbitalPeriodDays: 10759.22, distance: '9.537 AU',
+        youtubeId: 'HOzXRgk2pog', orbitalPeriodDays: 10759.22, distance: '9.537 AU',
         diameter: '116,460 km', moons: '146', rotation: '10.7 Hours', temp: '-139°C',
         fact: 'Famous for its highly extensive and spectacular <strong>ring system</strong> made up of billions of chunks of ice, rocky debris, and cosmic dust.'
       },
       { 
         id: 'uranus', name: 'Uranus', emoji: '🔵', type: 'Ice Giant',
-        youtubeId: '4TB5_WsxaFU', orbitalPeriodDays: 30688.50, distance: '19.19 AU',
+        youtubeId: 'pEF8mm6odWg', orbitalPeriodDays: 30688.50, distance: '19.19 AU',
         diameter: '50,724 km', moons: '28', rotation: '17.2 Hours', temp: '-197°C',
         fact: 'An ice giant with a unique orientation. It is the only planet that rotates completely <strong>on its side</strong>, likely due to an ancient planetary collision.'
       },
       { 
         id: 'neptune', name: 'Neptune', emoji: '🫧', type: 'Ice Giant',
-        youtubeId: 'HzII04BXK1k', orbitalPeriodDays: 60195.00, distance: '30.07 AU',
+        youtubeId: 'urbW4F83K6c', orbitalPeriodDays: 60195.00, distance: '30.07 AU',
         diameter: '49,244 km', moons: '16', rotation: '16.1 Hours', temp: '-201°C',
         fact: 'The most distant planet from the Sun. It is a freezing world swept by supersonic winds that reach speeds of up to <strong>2,100 kilometers per hour</strong>.'
+      },
+      { 
+        id: 'pluto', name: 'Pluto', emoji: '🟤', type: 'Dwarf Planet',
+        youtubeId: 'JEJq_wf9p_8', orbitalPeriodDays: 90560.00, distance: '39.48 AU',
+        diameter: '2,376 km', moons: '5', rotation: '6.4 Earth days', temp: '-225°C',
+        fact: 'Classified as a dwarf planet in 2006. It features a prominent heart-shaped glacier named <strong>Tombaugh Regio</strong> and has a highly eccentric, tilted orbit.'
       }
     ];
 
@@ -443,7 +443,7 @@
       document.getElementById(`btn-${id}`).classList.add('active');
     }
 
-    // GENERATE THE CLICKABLE HORIZONTAL BUTTONS dynamically
+    // GENERATE THE CLICKABLE HORIZONTAL BUTTONS
     function setupSelectorBar() {
       const bar = document.getElementById('selector-bar');
       bar.innerHTML = celestialData.map(p => `
@@ -453,7 +453,7 @@
       `).join('');
     }
 
-    // ORIGINAL AGE CALCULATOR RENDERING FUNCTION (UNTOUCHED)
+    // ORIGINAL AGE CALCULATOR RENDERING FUNCTION
     function renderCards(earthAge) {
       const grid = document.getElementById('planets-grid');
       const hasAge = earthAge !== null && !isNaN(earthAge);
@@ -535,7 +535,7 @@
     // RUN THE RUNTIME SETUP
     setupSelectorBar();
     renderCards(null);
-    changeDashboardTarget('venus'); // Sets Venus as standard on page load like image_8ad528.jpg
+    changeDashboardTarget('venus'); // Sets Venus as standard on page load
   </script>
 
 </body>
