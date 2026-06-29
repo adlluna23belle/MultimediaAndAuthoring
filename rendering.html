@@ -29,7 +29,7 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+     
     body { 
       font-family: 'Syne', sans-serif; 
       background: var(--black); 
@@ -71,7 +71,7 @@
     .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); letter-spacing: 0.12em; text-decoration: none; position: relative; }
     .nav-brand::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 25%; height: 1px; background: var(--accent); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     .nav-brand:hover::after { width: 100%; }
-    
+     
     .nav-links { display: flex; gap: 0.5rem; }
     .nav-links a {
       color: var(--mid); text-decoration: none; font-size: 0.72rem; font-weight: 600;
@@ -119,7 +119,7 @@
     .db-center { text-align: center; justify-content: space-between; }
     .db-center h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); }
     .db-center .db-sub { font-size: 0.8rem; color: var(--mid); margin-bottom: 1.5rem; margin-top: 0.2rem; }
-    
+     
     .video-wrap { 
       border: 1px solid var(--border); 
       background: #000; 
@@ -185,7 +185,7 @@
       transition: all 0.3s ease; outline: none;
     }
     .calc-field input:focus { border-color: var(--accent); background: rgba(0,0,0,0.8); box-shadow: 0 0 20px rgba(212, 175, 106, 0.15); }
-    
+     
     .calc-btn {
       padding: 0.95rem 2.5rem; background: var(--accent); color: var(--black);
       border: none; border-radius: 4px; font-family: 'Syne', sans-serif; font-size: 0.78rem;
@@ -210,7 +210,7 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px var(--glow);
     }
     .planet-header { padding: 1.8rem 1.5rem; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); }
-    
+     
     .planet-emoji { font-size: 2.4rem; line-height: 1; transition: all 0.4s ease; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
     @keyframes planetBob {
       0% { transform: translateY(0) scale(1); }
@@ -221,14 +221,14 @@
 
     .planet-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); font-weight: 500; letter-spacing: 0.02em; }
     .planet-type { font-size: 0.68rem; color: var(--accent); opacity: 0.8; margin-top: 2px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
-    
+     
     .planet-fact { padding: 1.2rem 1.5rem; font-size: 0.82rem; line-height: 1.6; color: #a6a6a6; border-bottom: 1px dashed rgba(255,255,255,0.04); }
     .planet-fact strong { color: var(--accent); font-weight: 600; }
 
     .planet-stats { padding: 1.4rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 0.8rem; border-bottom: 1px solid var(--border); }
     .planet-stat-label { font-size: 0.62rem; color: #555; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; }
     .planet-stat-val { font-size: 0.85rem; color: var(--light); font-weight: 500; }
-    
+     
     .planet-age-row { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); border-radius: 0 0 8px 8px; }
     .planet-age-label { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
     .planet-age-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--accent); font-weight: 600; text-shadow: 0 0 15px rgba(212,175,106,0.3); }
@@ -264,7 +264,7 @@
     <div class="block-sub">Interactive 3D Simulation Preview</div>
 
     <div class="dashboard">
-      
+       
       <div class="db-panel db-left">
         <div class="db-label-tag">Description</div>
         <div class="db-desc-text" id="db-description">Loading descriptive text data...</div>
@@ -275,7 +275,7 @@
           <h2 id="db-title">Venus</h2>
           <div class="db-sub">Explore this celestial body and discover key orbital and physical properties.</div>
         </div>
-        
+         
         <div class="video-wrap">
           <iframe id="db-video-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -298,7 +298,7 @@
 
       <div class="db-panel db-right">
         <h3>Other Details</h3>
-        
+         
         <div class="db-detail-item">
           <div class="db-detail-icon">📍</div>
           <div class="db-detail-info">
@@ -355,7 +355,6 @@
   </footer>
 
   <script>
-    // In-depth celestial data object including structural weight metrics (Mass) to replace rotation info
     const celestialData = [
       { 
         id: 'sun', name: 'Sun', emoji: '☀️', type: 'Star',
@@ -380,6 +379,12 @@
         youtubeId: '4c_Bh_1V9rQ', orbitalPeriodDays: 365.25, distance: '1.000 AU',
         diameter: '12,742 km', moons: '1', mass: '1.000 Earth (5.97×10²⁴ kg)', temp: '15°C (Avg)',
         fact: 'Our home base. It is the only known celestial body capable of harboring life, uniquely maintaining stable <strong>liquid water oceans</strong>.'
+      },
+      { 
+        id: 'moon', name: 'Moon', emoji: '🌙', type: 'Natural Satellite',
+        youtubeId: 'NdCrv3UaCkE', orbitalPeriodDays: 27.32, distance: '0.00257 AU (From Earth)',
+        diameter: '3,474 km', moons: '0', mass: '0.0123 Earths', temp: '-130°C to 120°C',
+        fact: 'Earth\'s only natural satellite. It stabilizes our planet\'s wobble on its axis, leading to a relatively stable climate, and causes the ocean <strong>tides</strong>.'
       },
       { 
         id: 'mars', name: 'Mars', emoji: '🔴', type: 'Terrestrial Planet',
@@ -433,7 +438,7 @@
       document.getElementById('db-stat-orbital').innerText = target.orbitalPeriodDays >= 365.25 ? (target.orbitalPeriodDays/365.25).toFixed(1) + ' yrs' : target.orbitalPeriodDays + ' days';
       document.getElementById('db-stat-moons').innerText = target.moons;
       
-      // Side list fields updates (Dito binago ang reference mula rotation patungong mass)
+      // Side list fields updates
       document.getElementById('db-detail-distance').innerText = target.distance;
       document.getElementById('db-detail-mass').innerText = target.mass;
       document.getElementById('db-detail-temp').innerText = target.temp;
