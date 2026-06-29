@@ -87,7 +87,7 @@
     .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
     .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 800px; }
 
-    /* NEW SECTION STYLING (Based on guide image) */
+    /* UPPER SECTION STYLING */
     .showcase-banner {
       background: var(--dark);
       backdrop-filter: blur(12px);
@@ -148,12 +148,12 @@
       display: block;
     }
 
-    /* DASHBOARD LAYOUT */
+    /* DASHBOARD LAYOUT (UPDATED: 5 COLUMNS SPLIT) */
     .dashboard {
       display: grid;
-      grid-template-columns: 320px 1fr 320px;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: 210px 260px 1fr 260px 210px;
+      gap: 1.2rem;
+      margin-bottom: 5rem;
     }
 
     .db-panel {
@@ -162,7 +162,7 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 2rem;
+      padding: 1.8rem;
       display: flex;
       flex-direction: column;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -172,20 +172,45 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px var(--glow);
     }
 
+    /* SIDEBAR NAVIGATION BUTTON TRACKS */
+    .db-selector-track {
+      background: rgba(6, 6, 6, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .selector-btn {
+      background: transparent; border: 1px solid transparent; color: var(--mid);
+      padding: 0.75rem 1rem; border-radius: 6px; cursor: pointer;
+      font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 500;
+      display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;
+      text-align: left; width: 100%;
+    }
+    .selector-btn span { font-size: 1.1rem; }
+    .selector-btn:hover { color: var(--white); background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.05); }
+    .selector-btn.active {
+      background: rgba(212, 175, 106, 0.1); color: var(--accent); font-weight: 700;
+      border-color: rgba(212, 175, 106, 0.3);
+      box-shadow: inset 0 0 12px rgba(212, 175, 106, 0.05);
+    }
+
     /* LEFT PANEL: Description */
     .db-label-tag { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-    .db-desc-text { font-size: 0.92rem; line-height: 1.8; color: var(--mid); }
+    .db-desc-text { font-size: 0.88rem; line-height: 1.7; color: var(--mid); }
 
     /* CENTER PANEL: Visualizer */
     .db-center { text-align: center; justify-content: space-between; }
-    .db-center h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); }
-    .db-center .db-sub { font-size: 0.8rem; color: var(--mid); margin-bottom: 1.5rem; margin-top: 0.2rem; }
+    .db-center h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); }
+    .db-center .db-sub { font-size: 0.78rem; color: var(--mid); margin-bottom: 1.2rem; margin-top: 0.2rem; }
      
     .video-wrap { 
       border: 1px solid var(--border); 
       background: #000; 
       aspect-ratio: 16/9; 
-      margin-bottom: 1.5rem; 
+      margin-bottom: 1.2rem; 
       position: relative; 
       overflow: hidden; 
       border-radius: 6px;
@@ -193,41 +218,17 @@
     }
     .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
 
-    .db-quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
-    .db-stat-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.8rem; border-radius: 6px; text-align: center; }
-    .db-stat-box .lbl { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 700; }
-    .db-stat-box .val { font-size: 0.85rem; color: var(--light); font-weight: 600; }
+    .db-quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+    .db-stat-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.7rem; border-radius: 6px; text-align: center; }
+    .db-stat-box .lbl { font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 700; }
+    .db-stat-box .val { font-size: 0.8rem; color: var(--light); font-weight: 600; }
 
     /* RIGHT PANEL: Technical Details */
     .db-right h3 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 1.5rem; }
-    .db-detail-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 1rem; border-radius: 6px; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem; }
-    .db-detail-icon { font-size: 1.2rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-    .db-detail-info .lbl { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
-    .db-detail-info .val { font-size: 0.88rem; color: var(--light); font-weight: 500; margin-top: 2px; }
-
-    /* DYNAMIC HORIZONTAL SELECTOR BAR */
-    .selector-container { margin-bottom: 5rem; }
-    .selector-bar {
-      background: rgba(10, 10, 10, 0.9);
-      border: 1px solid var(--border);
-      padding: 0.5rem;
-      border-radius: 40px;
-      display: flex;
-      justify-content: space-between;
-      overflow-x: auto;
-      gap: 0.4rem;
-    }
-    .selector-btn {
-      background: transparent; border: none; color: var(--mid);
-      padding: 0.6rem 1.2rem; border-radius: 30px; cursor: pointer;
-      font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 500;
-      display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; white-space: nowrap;
-    }
-    .selector-btn:hover { color: var(--white); background: rgba(255,255,255,0.03); }
-    .selector-btn.active {
-      background: var(--accent); color: var(--black); font-weight: 700;
-      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.3);
-    }
+    .db-detail-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.9rem; border-radius: 6px; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.8rem; }
+    .db-detail-icon { font-size: 1.1rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+    .db-detail-info .lbl { font-size: 0.58rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+    .db-detail-info .val { font-size: 0.84rem; color: var(--light); font-weight: 500; margin-top: 2px; }
 
     /* AGE CALCULATOR CONTAINER */
     .calc-box { 
@@ -305,8 +306,8 @@
     footer span { color: var(--mid); }
 
     /* RESPONSIVE LAYOUT */
-    @media(max-width:1024px){ .dashboard { grid-template-columns: 1fr; } }
-    @media(max-width:768px){ .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } }
+    @media(max-width:1200px){ .dashboard { grid-template-columns: 1fr 1fr; } .db-selector-track { grid-column: span 2; flex-direction: row; overflow-x: auto; } }
+    @media(max-width:768px) { .dashboard { grid-template-columns: 1fr; } .db-selector-track { grid-column: span 1; } .content { padding-left: 1.5rem; padding-right: 1.5rem; } nav { padding: 0 1.5rem; } }
   </style>
 </head>
 <body>
@@ -337,6 +338,8 @@
 
     <div class="dashboard">
        
+      <div class="db-selector-track" id="selector-left"></div>
+
       <div class="db-panel db-left">
         <div class="db-label-tag">Description</div>
         <div class="db-desc-text" id="db-description">Loading descriptive text data...</div>
@@ -396,10 +399,8 @@
         </div>
       </div>
 
-    </div>
+      <div class="db-selector-track" id="selector-right"></div>
 
-    <div class="selector-container">
-      <div class="selector-bar" id="selector-bar"></div>
     </div>
 
     <h2 class="block-title">Planetary Age Calculator</h2>
@@ -515,15 +516,28 @@
       document.getElementById('db-detail-mass').innerText = target.mass;
       document.getElementById('db-detail-temp').innerText = target.temp;
 
-      // Handle active button state classes toggles
+      // Handle active button state classes toggles across both side tracks
       document.querySelectorAll('.selector-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`btn-${id}`).classList.add('active');
+      const activeBtn = document.getElementById(`btn-${id}`);
+      if(activeBtn) activeBtn.classList.add('active');
     }
 
-    // GENERATE THE CLICKABLE HORIZONTAL BUTTONS
-    function setupSelectorBar() {
-      const bar = document.getElementById('selector-bar');
-      bar.innerHTML = celestialData.map(p => `
+    // GENERATE SPLIT SIDEBAR SELECTION BUTTON TRACKS
+    function setupSelectorTracks() {
+      const leftTrack = document.getElementById('selector-left');
+      const rightTrack = document.getElementById('selector-right');
+      
+      // Divide arrays conceptually (Sun [0] to Earth [4] = 5 items vs Mars [5] to Pluto [10] = 6 items)
+      const leftPlanets = celestialData.slice(0, 5);
+      const rightPlanets = celestialData.slice(5);
+
+      leftTrack.innerHTML = leftPlanets.map(p => `
+        <button class="selector-btn" id="btn-${p.id}" onclick="changeDashboardTarget('${p.id}')">
+          <span>${p.emoji}</span> ${p.name}
+        </button>
+      `).join('');
+
+      rightTrack.innerHTML = rightPlanets.map(p => `
         <button class="selector-btn" id="btn-${p.id}" onclick="changeDashboardTarget('${p.id}')">
           <span>${p.emoji}</span> ${p.name}
         </button>
@@ -610,7 +624,7 @@
     });
 
     // RUN THE RUNTIME SETUP
-    setupSelectorBar();
+    setupSelectorTracks();
     renderCards(null);
     changeDashboardTarget('venus'); 
   </script>
