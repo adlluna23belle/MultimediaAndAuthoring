@@ -20,6 +20,10 @@
       --accent: #d4af6a; 
       --accent-dim: #a07c3a;
       --glow: rgba(212, 175, 106, 0.12);
+      
+      /* NEW DOWNLOAD COMPONENT COLORS */
+      --pink-accent: #ffb7d5;
+      --pink-glow: rgba(255, 183, 213, 0.2);
     }
 
     /* CUSTOM SCROLLBAR */
@@ -87,7 +91,7 @@
     .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
     .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 800px; }
 
-    /* NEW SECTION STYLING (Based on guide image) */
+    /* UPPER SECTION STYLING */
     .showcase-banner {
       background: var(--dark);
       backdrop-filter: blur(12px);
@@ -222,7 +226,7 @@
       color: var(--light);
     }
 
-    /* DASHBOARD LAYOUT (RESTORED TO ORIGINAL EXACT 3-COLUMN STRUCTURE) */
+    /* DASHBOARD LAYOUT */
     .dashboard {
       display: grid;
       grid-template-columns: 320px 1fr 320px;
@@ -369,12 +373,66 @@
     .planet-age-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--accent); font-weight: 600; text-shadow: 0 0 15px rgba(212,175,106,0.3); }
     .planet-age-val.empty { font-family: 'Syne', sans-serif; font-size: 0.75rem; color: var(--muted); font-weight: 500; text-shadow: none; }
 
+    /* NEW DOWNLOAD PROJECT FILES CONTAINER (Based on image_d8d366.png) */
+    .download-panel {
+      background: linear-gradient(135deg, rgba(20, 10, 25, 0.7) 0%, rgba(10, 5, 15, 0.85) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 183, 213, 0.08);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      margin-top: 6rem;
+      margin-bottom: 2rem;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .download-panel:hover {
+      border-color: rgba(255, 183, 213, 0.25);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 35px var(--pink-glow);
+    }
+    .download-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .download-desc {
+      font-size: 0.95rem;
+      color: var(--mid);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--pink-accent);
+      color: #14050f;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(255, 183, 213, 0.2);
+    }
+    .download-btn:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 183, 213, 0.4);
+    }
+    .download-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
     /* FOOTER DESIGN */
     footer {
       border-top: 1px solid var(--border); background: rgba(4, 4, 4, 0.85);
       backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
       text-align: center; padding: 4rem 1.5rem;
-      font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); line-height: 2; margin-top: 6rem;
+      font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); line-height: 2; margin-top: 4rem;
     }
     footer span { color: var(--mid); }
 
@@ -395,6 +453,7 @@
 
   <div class="content">
 
+    <!-- FINAL OUTPUT BANNER SECTION -->
     <div class="showcase-banner">
       <div class="showcase-header">
         <span class="showcase-tag">Final Output</span>
@@ -406,6 +465,7 @@
       </div>
     </div>
 
+    <!-- BLENDER TUTORIAL SECTION -->
     <div class="tutorial-container">
       <div class="tutorial-header">
         <h2 class="tutorial-title">Blender Tutorial</h2>
@@ -413,36 +473,42 @@
       </div>
       
       <div class="tutorial-grid">
+        <!-- Step 1 -->
         <div class="step-card">
           <span class="step-num">Step 1</span>
           <h3 class="step-heading">Install BlenderKit</h3>
           <p class="step-body">Download BlenderKit, then open <strong>Edit &gt; Preferences &gt; Add-ons</strong> in Blender and enable <strong>BlenderKit</strong>.</p>
         </div>
         
+        <!-- Step 2 -->
         <div class="step-card">
           <span class="step-num">Step 2</span>
           <h3 class="step-heading">Import Planet + HDRI</h3>
           <p class="step-body">Press <strong>N</strong> to open the sidebar, go to the BlenderKit tab, then search for a <strong>planet model</strong> and an <strong>HDRI background</strong>.</p>
         </div>
         
+        <!-- Step 3 -->
         <div class="step-card">
           <span class="step-num">Step 3</span>
           <h3 class="step-heading">Add Animation Script</h3>
           <p class="step-body">Open the <strong>Scripting</strong> workspace, paste a Python script for orbital/rotation animation, and run it to generate movement.</p>
         </div>
         
+        <!-- Step 4 -->
         <div class="step-card">
           <span class="step-num">Step 4</span>
           <h3 class="step-heading">Frame the Camera</h3>
           <p class="step-body">Set your camera angle and focus so the planet stays centered and cinematic throughout the animation.</p>
         </div>
         
+        <!-- Step 5 -->
         <div class="step-card">
           <span class="step-num">Step 5</span>
           <h3 class="step-heading">Render the Animation</h3>
           <p class="step-body">Configure render settings (resolution, FPS, output format), then press <strong>Ctrl + F12</strong> or use <strong>Render &gt; Render Animation</strong>.</p>
         </div>
         
+        <!-- Step 6 -->
         <div class="step-card">
           <span class="step-num">Step 6</span>
           <h3 class="step-heading">Publish on Your Website</h3>
@@ -451,6 +517,7 @@
       </div>
     </div>
 
+    <!-- CELESTIAL BODIES DASHBOARD -->
     <h2 class="block-title">Celestial Bodies</h2>
     <div class="block-sub">Interactive 3D Simulation Preview</div>
 
@@ -517,10 +584,12 @@
 
     </div>
 
+    <!-- HORIZONTAL SELECTOR BAR -->
     <div class="selector-container">
       <div class="selector-bar" id="selector-bar"></div>
     </div>
 
+    <!-- PLANETARY AGE CALCULATOR -->
     <h2 class="block-title">Planetary Age Calculator</h2>
     <div class="block-sub">Interactive Tool</div>
     <p class="body-text">Every planet takes a different amount of time to orbit the Sun — meaning your age is different on each one. Enter your Earth age to see how old you are across the solar system.</p>
@@ -537,6 +606,18 @@
     </div>
 
     <div class="planets-grid" id="planets-grid"></div>
+
+    <!-- NEW SECTION: DOWNLOAD PROJECT FILES (From image_d8d366.png) -->
+    <div class="download-panel">
+      <h2 class="download-title">Download Project Files</h2>
+      <p class="download-desc">Get access to the complete Blender project, Python scripts, and high-resolution renders.</p>
+      <a href="https://drive.google.com/drive/folders/1dPJIZpdcbV2Gc61cT5n49un4Jx9rVeUd?usp=drive_link" target="_blank" class="download-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M5 20h14v-2H5v2zm7-18L5.33 11h4V16h5.34v-5h4L12 2z"/>
+        </svg>
+        Download Blender Project
+      </a>
+    </div>
 
   </div>
 
