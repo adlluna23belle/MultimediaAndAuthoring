@@ -87,6 +87,67 @@
     .block-sub::after { content: ''; width: 60px; height: 1px; background: var(--accent); opacity: 0.5; display: block; }
     .body-text { font-size: 0.95rem; line-height: 1.9; color: var(--mid); margin-bottom: 2rem; max-width: 800px; }
 
+    /* NEW SECTION STYLING (Based on guide image) */
+    .showcase-banner {
+      background: var(--dark);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .showcase-banner:hover {
+      border-color: rgba(212, 175, 106, 0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px var(--glow);
+    }
+    .showcase-header {
+      max-width: 750px;
+      margin: 0 auto 2.5rem auto;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 1.5rem;
+    }
+    .showcase-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .showcase-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .showcase-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+    .showcase-video-container {
+      max-width: 960px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      background: #000;
+      aspect-ratio: 16/9;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    }
+    .showcase-video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
     /* DASHBOARD LAYOUT */
     .dashboard {
       display: grid;
@@ -259,6 +320,17 @@
   </nav>
 
   <div class="content">
+
+    <div class="showcase-banner">
+      <div class="showcase-header">
+        <span class="showcase-tag">Final Output</span>
+        <h1 class="showcase-title">Solar System Animation</h1>
+        <p class="showcase-desc">A comprehensive 3D animation of our solar system created using Blender with Python scripting for accurate planetary motion and physics. Explore each celestial body in detail below.</p>
+      </div>
+      <div class="showcase-video-container">
+        <iframe src="https://www.youtube.com/embed/jCYNIG7AS9U" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
 
     <h2 class="block-title">Celestial Bodies</h2>
     <div class="block-sub">Interactive 3D Simulation Preview</div>
