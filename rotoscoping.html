@@ -4,450 +4,554 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rotoscoping — Ira L. Barasi</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Syne:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    :root{
-      --black:#0a0a0a;
-      --dark:#111;
-      --card:rgba(255,255,255,0.03);
-      --border:rgba(255,255,255,0.08);
-      --mid:#9a9a9a;
-      --white:#fff;
-      --accent:#d4af6a;
-      --glow:rgba(212,175,106,0.25);
+    :root {
+      --black: #06040a;
+      --dark: #0f0a17;
+      --card: rgba(255, 255, 255, 0.015);
+      --border: rgba(229, 179, 212, 0.08);
+      --muted: rgba(255, 255, 255, 0.05);
+      --mid: #a39cb0;
+      --light: #e2daeb;
+      --white: #ffffff;
+      --accent: #e5b3d4; /* Tinted pink/lavender accent */
+      --glow: rgba(229, 179, 212, 0.15);
     }
 
-    *{margin:0;padding:0;box-sizing:border-box}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body{
-      font-family:'Syne',sans-serif;
-      background:radial-gradient(circle at top,#111,#050505);
-      color:var(--white);
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:0 2rem;
-      height:60px;
-      background:rgba(17,17,17,0.7);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--border);
-      position:sticky;
-      top:0;
+    /* GLOBAL BACKGROUND AMBIENCE */
+    .bg-glow-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(229, 179, 212, 0.05) 0%, transparent 70%);
+      top: -150px;
+      left: -100px;
+      z-index: 0;
+      pointer-events: none;
     }
 
-    .nav-brand{
-      font-family:'Cormorant Garamond',serif;
-      color:#fff;
-      text-decoration:none;
+    /* NAV */
+    nav {
+      background: rgba(15, 10, 23, 0.75);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 65px; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; color: var(--white);
+      letter-spacing: 0.04em; text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-links { display: flex; gap: 0.5rem; }
+    .nav-links a {
+      color: var(--mid); text-decoration: none; font-size: 0.75rem;
+      font-weight: 600; padding: 0.5rem 1.2rem; border-radius: 20px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid transparent;
+    }
+    .nav-links a:hover { 
+      color: var(--white); 
+      background: rgba(229, 179, 212, 0.08); 
+      border-color: rgba(229, 179, 212, 0.2);
+      box-shadow: 0 0 15px var(--glow);
     }
 
-    .nav-links a{
-      margin-left:10px;
-      text-decoration:none;
-      color:var(--mid);
-      font-size:0.75rem;
-      padding:6px 12px;
-      border-radius:6px;
-      transition:.3s;
+    /* HERO */
+    .hero {
+      padding: 7rem 3.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      background: radial-gradient(ellipse 50% 40% at 90% 80%, rgba(229, 179, 212, 0.03) 0%, transparent 70%);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7.5vw, 6rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      max-width: 750px;
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.85;
     }
 
-    .nav-links a:hover{
-      color:#fff;
-      background:rgba(255,255,255,0.05);
-      box-shadow:0 0 10px var(--glow);
+    /* MAIN CONTAINER */
+    .content {
+      max-width: 1200px;
+      margin: auto;
+      padding: 4rem 3.5rem 8rem;
+      position: relative;
+      z-index: 2;
     }
 
-    .hero{
-      padding:5rem 2rem 4rem;
-      border-bottom:1px solid var(--border);
+    .block-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-top: 5rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .block-title:first-of-type {
+      margin-top: 0;
     }
 
-    .hero h1{
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(3rem,6vw,5rem);
+    .block-sub {
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .block-sub::after { content: ''; width: 40px; height: 1px; background: var(--accent); opacity: 0.4; }
+
+    .body-text {
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 750px;
     }
 
-    .hero p{
-      max-width:750px;
-      color:var(--mid);
-      line-height:1.8;
+    /* VIDEO PLAYER COMPONENT */
+    .video-wrap {
+      aspect-ratio: 16/9;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
-    .content{
-      max-width:1050px;
-      margin:auto;
-      padding:5rem 2rem;
+    /* FEATURED ROW (FINAL VIDEO BOX) */
+    .featured-video-container {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 24px;
+      margin-bottom: 3rem;
+    }
+    .disclaimer-text {
+      font-size: 0.78rem;
+      color: #6a6275;
+      line-height: 1.6;
+      margin-top: 1rem;
     }
 
-    .block-title{
-      font-family:'Cormorant Garamond',serif;
-      font-size:2rem;
-      margin-top:4rem;
+    /* MEDIA MODULAR GRIDS */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
     }
 
-    .block-sub{
-      font-size:0.7rem;
-      color:var(--accent);
-      letter-spacing:2px;
-      margin-bottom:1.5rem;
+    .module-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .module-card:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(229, 179, 212, 0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
-    .body-text{
-      color:var(--mid);
-      line-height:1.9;
-      margin-bottom:2rem;
-      max-width:750px;
+    .module-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .module-card p {
+      color: var(--mid);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
     }
 
-    /* VIDEO */
-    .video-wrap{
-      aspect-ratio:16/9;
-      background:#000;
-      border:1px solid var(--border);
-      border-radius:10px;
-      overflow:hidden;
-      margin-bottom:1rem;
+    /* PREMIUM HYPERLINK BUTTONS */
+    .yt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--light);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+      margin-top: auto;
+    }
+    .yt-link:hover {
+      color: var(--accent);
+    }
+    .yt-link::after {
+      content: '↗';
+      font-size: 0.85rem;
+      color: var(--accent);
+      transition: transform 0.2s;
+    }
+    .yt-link:hover::after {
+      transform: translate(2px, -2px);
     }
 
-    iframe{
-      width:100%;
-      height:100%;
-      border:none;
+    /* CREDITS BLOCK */
+    .credits-card {
+      background: linear-gradient(135deg, rgba(229, 179, 212, 0.03), transparent);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.5rem;
+    }
+    .credits-card p {
+      color: var(--mid);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .credits-card p:last-child {
+      margin-bottom: 0;
+      color: #6a6275;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1.5rem;
+    }
+    .credits-card strong {
+      color: var(--white);
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    /* GRID */
-    .module-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:1rem;
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      background: #0b0712;
+      text-align: center; 
+      padding: 3rem 1.5rem;
+      font-size: 0.8rem; 
+      letter-spacing: 0.06em;
+      color: rgba(163, 156, 176, 0.4);
     }
 
-    .module-card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:1.2rem;
-      transition:.3s;
+    @media(max-width:768px){
+      .hero { padding: 5rem 2rem 3rem; }
+      .content { padding: 3rem 2rem 6rem; }
+      nav { padding: 0 2rem; }
+      .module-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .featured-video-container { padding: 1.2rem; }
     }
-
-    .module-card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .module-card h4{
-      font-family:'Cormorant Garamond',serif;
-      margin-bottom:0.5rem;
-    }
-
-    .module-card p{
-      color:var(--mid);
-      font-size:0.85rem;
-      line-height:1.6;
-    }
-
-    .yt-link{
-      display:inline-block;
-      margin-top:10px;
-      font-size:0.75rem;
-      color:var(--accent);
-      text-decoration:none;
-    }
-
-    .yt-link:hover{
-      text-decoration:underline;
-    }
-
-    footer{
-      text-align:center;
-      padding:2rem;
-      border-top:1px solid var(--border);
-      color:var(--mid);
-      font-size:0.75rem;
-      margin-top:5rem;
-    }
-
-    .credit{
-  margin-top:10px;
-  font-size:0.9rem;
-  color:#888;
-  line-height:1.5;
-}
-
   </style>
 </head>
 
 <body>
 
-<nav>
-  <a class="nav-brand" href="index.html">Ira L. Barasi</a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+  <div class="bg-glow-orb"></div>
+
+  <nav>
+    <a class="nav-brand" href="index.html">Ira L. Barasi</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Rotoscoping</h1>
+    <p>
+      Rotoscoping is the technique of animating by tracing over live-action video footage frame by frame. Originally patented in 1917, it has evolved into a digital animation method used for realistic motion and stylized effects. This project documents the full creative process from raw footage to final animation output.
+    </p>
   </div>
-</nav>
 
-<!-- HERO (ORIGINAL CONTENT KEPT) -->
-<div class="hero">
-  <h1>Rotoscoping</h1>
-  <p>
-    Rotoscoping is the technique of animating by tracing over live-action video footage frame by frame. Originally patented in 1917, it has evolved into a digital animation method used for realistic motion and stylized effects. This project documents the full creative process from raw footage to final animation output.
-  </p>
-</div>
+  <div class="content">
 
-<div class="content">
+    <h2 class="block-title">Final Output</h2>
+    <div class="block-sub">Rotoscope Master Version</div>
+    
+    <p class="body-text">
+      The final output of rotoscoping animation is the result of frame-by-frame tracing, coloring, and editing using Adobe After Effects, Clip Studio, and CapCut.
+    </p>
 
-  <!-- FINAL OUTPUT -->
-  <h2 class="block-title">Final Output</h2>
-  <div class="block-sub">Final Video of Rotoscope Project</div>
-
-  <p class="body-text">
-    The final output of rotoscoping animation is the result of frame-by-frame tracing, coloring, and editing using Adobe After Effects, Clip Studio, and CapCut.
-  </p>
-
-  <div class="video-wrap">
-    <!-- 🔥 FINAL OUTPUT VIDEO -->
-   <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
+    <div class="featured-video-container">
+      <div class="video-wrap">
         <iframe src="https://www.youtube.com/embed/ktJwkbtwfkE" allowfullscreen></iframe>
       </div>
       <a class="yt-link" href="https://www.youtube.com/watch?v=ktJwkbtwfkE" target="_blank">Watch on YouTube</a>
-      <p>These videos are for educational purposes only. No copyright infringement is intended. All rights belong to their respective owners.</p>
+      <p class="disclaimer-text">These videos are for educational purposes only. No copyright infringement is intended. All rights belong to their respective owners.</p>
     </div>
 
-  <!-- PROCESS SECTION (ORIGINAL + CLEANED) -->
-  <h2 class="block-title">Step-by-Step Tutorial</h2>
-  <div class="block-sub">Process</div>
+    <h2 class="block-title">Step-by-Step Tutorial</h2>
+    <div class="block-sub">Production Workflow</div>
+    <p class="body-text">A granular view inside the iterative steps required to segment files, build tracing guides, and apply layers across the animation timeline.</p>
 
-  <div class="module-grid">
+    <div class="module-grid">
 
-     <div class="module-card">
-      <h4>Split Video into Clips</h4>
-      <p>Divide footage into 5-second segments for easier frame-by-frame processing.</p>
-     <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/OCzFn2zk9PE" allowfullscreen></iframe>
+      <div class="module-card">
+        <div>
+          <h4>Split Video into Clips</h4>
+          <p>Divide footage into 5-second segments for easier frame-by-frame processing.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/OCzFn2zk9PE" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=OCzFn2zk9PE" target="_blank">Watch on YouTube</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=OCzFn2zk9PE" target="_blank">Watch on YouTube</a>
+      
+      <div class="module-card">
+        <div>
+          <h4>Prepare Applications</h4>
+          <p>Set up Adobe After Effects/Clip Studio and then import frame sequences and add layers on it.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/yYLHR8n3UWY" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=yYLHR8n3UWY" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Editing and Tracing</h4>
+          <p>Start your journey of editing and tracing in Clip Studio or to the app your using for rotoscoping activity.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/AQcfokAhbmE" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=AQcfokAhbmE" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Edit Frames</h4>
+          <p>Manually trace the other parts for finalizing and color each frame to create smooth animation.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/1iyYn__y2o4" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=1iyYn__y2o4" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Exporting of Video</h4>
+          <p>Exporting your video as animation video from the app used.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/gzodriqlpwk" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=gzodriqlpwk" target="_blank">Watch on YouTube</a>
+      </div>
+      
+      <div class="module-card">
+        <div>
+          <h4>Video Editing</h4>
+          <p>Import your video to CapCut or to any Video Editing Application you're using.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/Yi0m12OHgHI" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=Yi0m12OHgHI" target="_blank">Watch on YouTube</a>
+      </div>
+
     </div>
+
+    <h2 class="block-title">Weekly Progress</h2>
+    <div class="block-sub">Timeline Increments</div>
+    <p class="body-text">Compilation archives tracks the building blocks of 10 to 15-second visual cuts assembled over the project course cycle.</p>
+
+    <div class="module-grid">
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 1</h4>
+          <p>Starting clip for this activity. (0:00–0:15 seconds clip)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/h5OwBQ2OdfI" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=h5OwBQ2OdfI" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 2</h4>
+          <p>From 15 seconds to 30 seconds. (Additional 15-second clip)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/hy7ddbCT7wc" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=hy7ddbCT7wc" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 3</h4>
+          <p>From 30 seconds to 40 seconds. (Additional 10-second clip)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/PQiHCyx4Y3s" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=PQiHCyx4Y3s" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 4</h4>
+          <p>From 40 seconds to 50 seconds. (Additional 10-second clip)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/o0IYfHS_lI0" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=o0IYfHS_lI0" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 5</h4>
+          <p>Mid-project refinement and animation smoothing.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/DVSRxOl6K2U" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=DVSRxOl6K2U" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 6</h4>
+          <p>From 50 seconds to 65 seconds. (Additional 15-second clip)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/17TwIt6cchE" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=17TwIt6cchE" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 7</h4>
+          <p>From 65 seconds to 85 seconds. (Additional 20-second clip)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/8PV1WN5LFpY" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=8PV1WN5LFpY" target="_blank">Watch on YouTube</a>
+      </div>
+
+      <div class="module-card">
+        <div>
+          <h4>Clip 8</h4>
+          <p>From 85 seconds to 103 seconds. (Additional 18-second clip)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/F-9OMUekyQo" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=F-9OMUekyQo" target="_blank">Watch on YouTube</a>
+      </div>
+      
+      <div class="module-card">
+        <div>
+          <h4>Clip 9</h4>
+          <p>Finalizing the whole video for this project using CapCut Application.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/ktJwkbtwfkE" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=ktJwkbtwfkE" target="_blank">Watch on YouTube</a>
+      </div>
+
+    </div>
+
+    <h2 class="block-title">Reference Video</h2>
+    <div class="block-sub">Source Choreography</div>
     
-    <div class="module-card">
-      <h4>Prepare Applications</h4>
-      <p>Set up Adobe After Effects/Clip Studio and then import frame sequences and add layers on it.</p>
-     <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/yYLHR8n3UWY" allowfullscreen></iframe>
+    <div class="module-grid">
+      <div class="module-card">
+        <div>
+          <h4>Reference Dance Cover Video</h4>
+          <p>A 1-minute solo dance cover reference video used as the base tracking engine template.</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/HJmvo3iBs2M" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=HJmvo3iBs2M" target="_blank">Watch on YouTube</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=yYLHR8n3UWY" target="_blank">Watch on YouTube</a>
     </div>
 
-    <div class="module-card">
-      <h4>Editing and Tracing</h4>
-      <p>Start your journey of editing and tracing in Clip Studio or to the app your using for rotoscoping activity.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/AQcfokAhbmE" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=AQcfokAhbmE" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Edit Frames</h4>
-      <p>Manually trace the other parts for finalizing and color each frame to create smooth animation.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/1iyYn__y2o4" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=1iyYn__y2o4" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Exporting of Video</h4>
-      <p>Exporting your video as animation video from the app used.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/gzodriqlpwk" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=gzodriqlpwk" target="_blank">Watch on YouTube</a>
-    </div>
+    <h2 class="block-title">Reference Music</h2>
+    <div class="block-sub">Audio Core</div>
     
-    <div class="module-card">
-      <h4>Video Editing</h4>
-      <p>Import your video to CapCut or to any Video Editing Application you're using.</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/Yi0m12OHgHI" allowfullscreen></iframe>
+    <div class="module-grid">
+      <div class="module-card">
+        <div>
+          <h4>Reference Official Music Video</h4>
+          <p>BTS - Boy With Luv (feat. Halsey)</p>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/XsX3ATc3FbA" allowfullscreen></iframe>
+        </div>
+        <a class="yt-link" href="https://www.youtube.com/watch?v=XsX3ATc3FbA" target="_blank">Watch on YouTube</a>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=Yi0m12OHgHI" target="_blank">Watch on YouTube</a>
     </div>
 
+    <h2 class="block-title">Credits</h2>
+    <div class="block-sub">Attributions</div>
+
+    <div class="credits-card">
+      <p>
+        <strong>Dance Cover Video:</strong><br>
+        Credits to the owner of the dance cover video: <strong>@susiemeoww</strong>
+      </p>
+      <p>
+        <strong>Music Used:</strong><br>
+        Credits to the owners of the song: <strong>@BTS / @HYBELABELS</strong>
+      </p>
+      <p>
+        This material is used for educational purposes only. No copyright infringement intended. All rights belong to their respective owners.
+      </p>
+    </div>
+      
   </div>
 
-  <!-- WEEKLY PROGRESS (ORIGINAL + LINKS ADDED) -->
-  <h2 class="block-title">Weekly Progress</h2>
-  <div class="block-sub">10/15-Second Clips</div>
-
-  <div class="module-grid">
-
-    <!-- CLIP 1 — embedded -->
-    <div class="module-card">
-      <h4>Clip 1</h4>
-      <p>Starting clip for this activity. (0:00–0:15 seconds clip)</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/h5OwBQ2OdfI" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=h5OwBQ2OdfI" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <!-- CLIP 2 — embedded -->
-    <div class="module-card">
-      <h4>Clip 2</h4>
-      <p>From 15 seconds to 30 seconds. (Additional 15-second clip)</p>
-      <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/hy7ddbCT7wc" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=hy7ddbCT7wc" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Clip 3</h4>
-      <p>From 30 seconds to 40 seconds. (Additional 10-second clip)</p>
-        <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/PQiHCyx4Y3s" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=PQiHCyx4Y3s" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Clip 4</h4>
-      <p>From 40 seconds to 50 seconds. (Additional 10-second clip)</p>
-     <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/o0IYfHS_lI0" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=o0IYfHS_lI0" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Clip 5</h4>
-      <p>Mid-project refinement and animation smoothing.</p>
-       <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/DVSRxOl6K2U" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=DVSRxOl6K2U" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Clip 6</h4>
-      <p>From 50 seconds to 65 seconds. (Additional 15-second clip)</p>
-     <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/17TwIt6cchE" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=17TwIt6cchE" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Clip 7</h4>
-      <p>From 65 seconds to 85 seconds. (Additional 20-second clip)</p>
-     <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/8PV1WN5LFpY" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=8PV1WN5LFpY" target="_blank">Watch on YouTube</a>
-    </div>
-
-    <div class="module-card">
-      <h4>Clip 8</h4>
-      <p>From 85 seconds to 103 seconds. (Additional 18-second clip)</p>
-     <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/F-9OMUekyQo" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=F-9OMUekyQo" target="_blank">Watch on YouTube</a>
-    </div>
-    
-    <div class="module-card">
-      <h4>Clip 9</h4>
-      <p>Finalizing the whole video for this project using CapCut Application.</p>
-     <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-        <iframe src="https://www.youtube.com/embed/ktJwkbtwfkE" allowfullscreen></iframe>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/watch?v=ktJwkbtwfkE" target="_blank">Watch on YouTube</a>
-    </div>
-
-  </div>
-
-<!-- REFERENCE VIDEO -->
-<h2 class="block-title">Reference Video</h2>
-<div class="block-sub">A video that is applicable for this activity.</div>
-
-<div class="module-grid">
-  <div class="module-card">
-    <h4>Reference Dance Cover Video</h4>
-    <p>A 1-minute solo dance cover reference video.</p>
-
-    <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-      <iframe
-        src="https://www.youtube.com/embed/HJmvo3iBs2M"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <a class="yt-link"
-       href="https://www.youtube.com/watch?v=HJmvo3iBs2M"
-       target="_blank">
-      Watch on YouTube
-    </a>
-  </div>
-</div>
-
-<!-- REFERENCE MUSIC -->
-<h2 class="block-title">Reference Music</h2>
-<div class="block-sub">A music video used as the song for this activity.</div>
-
-<div class="module-grid">
-  <div class="module-card">
-    <h4>Reference Official Music Video</h4>
-    <p>BTS - Boy With Luv (feat. Halsey)</p>
-
-    <div class="video-wrap" style="margin-top:0.8rem;margin-bottom:0;">
-      <iframe
-        src="https://www.youtube.com/embed/XsX3ATc3FbA"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <a class="yt-link"
-       href="https://www.youtube.com/watch?v=XsX3ATc3FbA"
-       target="_blank">
-      Watch on YouTube
-    </a>
-  </div>
-</div>
-
-<!-- CREDITS -->
-<h2 class="block-title">Credits</h2>
-
-<div class="module-card">
-  <p>
-    <strong>Dance Cover Video:</strong><br>
-        Credits to the owner of the dance cover video:
-    @susiemeoww
-  </p>
-
-  <p>
-    <strong>Music Used:</strong><br>
-        Credits to the owners of the song:
-    @BTS / @HYBELABELS
-  </p>
-
-  <p>
-        This material is used for educational purposes only.
-        No copyright infringement intended. All rights belong to their respective owners.
-  </p>
-</div>
-  
-  
-</div>
-
-<footer>
-  © 2026 Ira L. Barasi | BSIT-NS-T-2A-T
-</footer>
+  <footer>
+    © 2026 Ira L. Barasi | BSIT-NS-2A<br>
+    <span>Multimedia and Authoring Portfolio</span>
+  </footer>
 
 </body>
 </html>
