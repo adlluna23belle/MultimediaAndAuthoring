@@ -9,153 +9,280 @@
 
   <style>
     :root {
-      --black:#0a0a0a;
-      --dark:#111;
-      --card:rgba(255,255,255,0.03);
-      --border:rgba(255,255,255,0.08);
-      --mid:#9a9a9a;
-      --white:#fff;
-      --accent:#d4af6a;
-      --glow:rgba(212,175,106,0.25);
+      --black: #050505;
+      --dark: #0f0a14; /* Slight purple/dark undertone from reference */
+      --card: rgba(255, 255, 255, 0.02);
+      --border: rgba(255, 255, 255, 0.06);
+      --mid: #a39cb0;
+      --white: #fff;
+      --accent: #e5b3d4; /* Tinted pink/lavender accent from reference */
+      --glow: rgba(229, 179, 212, 0.2);
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      font-family:'Syne',sans-serif;
-      background:radial-gradient(circle at top,#111,#050505);
-      color:var(--white);
+      font-family: 'Syne', sans-serif;
+      background: radial-gradient(circle at center, #130d1c, #07040a);
+      color: var(--white);
+      min-height: 100vh;
+      padding-bottom: 3rem;
     }
 
     nav {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:0 2rem;
-      height:60px;
-      background:rgba(17,17,17,0.7);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--border);
-      position:sticky; top:0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 60px;
+      background: rgba(11, 7, 15, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0;
+      z-index: 100;
     }
 
     .nav-brand {
-      font-family:'Cormorant Garamond',serif;
-      text-decoration:none;
-      color:white;
+      font-family: 'Cormorant Garamond', serif;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
     }
 
     .nav-links a {
-      margin-left:10px;
-      text-decoration:none;
-      color:var(--mid);
-      font-size:0.75rem;
-      padding:6px 12px;
-      border-radius:6px;
-      transition:.3s;
+      margin-left: 10px;
+      text-decoration: none;
+      color: var(--mid);
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: .3s;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
-      color:white;
-      background:rgba(255,255,255,0.05);
-      box-shadow:0 0 10px var(--glow);
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 10px var(--glow);
     }
 
-    .hero {
-      padding:5rem 2rem;
-      border-bottom:1px solid var(--border);
+    /* Main Container layout mimicking the reference card layout */
+    .main-wrapper {
+      max-width: 850px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
     }
 
-    .hero h1 {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(3rem,6vw,5rem);
+    /* Top 'Get In Touch' style section block header */
+    .section-banner {
+      background: linear-gradient(to bottom, rgba(229, 179, 212, 0.1), rgba(229, 179, 212, 0.02));
+      border: 1px solid rgba(229, 179, 212, 0.15);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
-    .hero p {
-      color:var(--mid);
-      max-width:500px;
+    .section-banner h1 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
     }
 
-    .content {
-      max-width:1000px;
-      margin:auto;
-      padding:4rem 2rem;
+    .section-banner p {
+      color: var(--mid);
+      font-size: 0.85rem;
     }
 
-    .block-title {
-      font-family:'Cormorant Garamond',serif;
-      font-size:2rem;
-      margin-top:3rem;
+    /* Profile Canvas Card */
+    .profile-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .block-sub {
-      font-size:0.7rem;
-      color:var(--accent);
-      margin-bottom:1.5rem;
-      letter-spacing:2px;
+    /* Abstract background circles matching reference design */
+    .profile-card::before, .profile-card::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(229, 179, 212, 0.03);
+      z-index: 0;
+    }
+    .profile-card::before { top: 10%; left: -40px; }
+    .profile-card::after { bottom: 10%; right: -40px; }
+
+    .profile-content {
+      position: relative;
+      z-index: 1;
+      max-width: 550px;
+      margin: 0 auto;
     }
 
-    .info-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1rem;
+    /* Avatar Glow layout */
+    .avatar-container {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      background: #fff; /* White placeholder canvas match */
+      border: 4px solid rgba(229, 179, 212, 0.3);
+      box-shadow: 0 0 25px var(--glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    .info-card {
-      padding:1.5rem;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:10px;
-      transition:.3s;
+    .avatar-placeholder {
+      font-size: 2.5rem;
     }
 
-    .info-card:hover {
-      transform:translateY(-5px);
-      box-shadow:0 10px 30px #000;
+    .profile-name {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
     }
 
-    .info-label {
-      font-size:0.7rem;
-      color:var(--accent);
+    /* Pill badge for section tracking */
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(229, 179, 212, 0.1);
+      border: 1px solid rgba(229, 179, 212, 0.2);
+      color: var(--accent);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
     }
 
-    .info-value {
-      font-size:1.2rem;
-      font-family:'Cormorant Garamond',serif;
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 0 auto 1.5rem;
+      opacity: 0.5;
     }
 
-    .about-body {
-      color:var(--mid);
-      line-height:1.8;
+    .profile-description {
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Vertical Info Rows block resembling the references contact options */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: left;
+    }
+
+    .info-row-card {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1.25rem;
+      border-radius: 14px;
+      transition: 0.3s ease;
+    }
+
+    .info-row-card:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(229, 179, 212, 0.3);
+    }
+
+    .icon-wrapper {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffc2df; /* Reference template base visual */
+      color: #3d142d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .info-text-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-row-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8c8599;
+      margin-bottom: 0.15rem;
+    }
+
+    .info-row-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    /* Dynamic tools layout built inside the card system wrapper */
+    .skills-section {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .skills-section h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
     }
 
     .skills-list {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .skill-tag {
-      border:1px solid var(--border);
-      padding:6px 12px;
-      border-radius:20px;
-      font-size:0.7rem;
-      transition:.3s;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--mid);
+      transition: .3s;
     }
 
     .skill-tag:hover {
-      border-color:var(--accent);
-      box-shadow:0 0 10px var(--glow);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 10px var(--glow);
     }
 
     footer {
-      text-align:center;
-      padding:2rem;
-      border-top:1px solid var(--border);
-      color:var(--mid);
-      font-size:0.75rem;
+      text-align: center;
+      margin-top: 4rem;
+      color: rgba(163, 156, 176, 0.4);
+      font-size: 0.75rem;
     }
   </style>
 </head>
@@ -170,79 +297,86 @@
   </div>
 </nav>
 
-<div class="hero">
-  <h1>About Me</h1>
-  <p>A brief introduction to my background, skills, and projects.</p>
+<div class="main-wrapper">
+
+  <div class="section-banner">
+    <h1>Get In Touch</h1>
+    <p>Feel free to reach out for collaborations, questions, or just to say hello!</p>
+  </div>
+
+  <div class="profile-card">
+    <div class="profile-content">
+      
+      <div class="avatar-container">
+        <svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#2a1b35" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
+
+      <h2 class="profile-name">Barasi, Ira L.</h2>
+      
+      <div class="badge-pill">
+        <span>🎓 BSIT-NS-2A</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="profile-description">
+        A passionate BSIT student exploring the world of multimedia arts — from rotoscoping animations to 3D solar system renders, blending technology with visual creativity.
+      </p>
+
+      <div class="info-list">
+        
+        <div class="info-row-card">
+          <div class="icon-wrapper">✉</div>
+          <div class="info-text-container">
+            <span class="info-row-label">Email</span>
+            <span class="info-row-value">irabarasi23@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="info-row-card">
+          <div class="icon-wrapper">📞</div>
+          <div class="info-text-container">
+            <span class="info-row-label">Phone</span>
+            <span class="info-row-value">0994 348 7980</span>
+          </div>
+        </div>
+
+        <div class="info-row-card">
+          <div class="icon-wrapper">📂</div>
+          <div class="info-text-container">
+            <span class="info-row-label">GitHub</span>
+            <span class="info-row-value">@adlluna23belle</span>
+          </div>
+        </div>
+
+        <div class="info-row-card">
+          <div class="icon-wrapper">🏛</div>
+          <div class="info-text-container">
+            <span class="info-row-label">Program & Section / Course Context</span>
+            <span class="info-row-value">BSIT - NS - 2A | Multimedia and Authoring (2025–2026)</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="skills-section">
+        <h3>Tools & Software</h3>
+        <div class="skills-list">
+          <span class="skill-tag">After Effects</span>
+          <span class="skill-tag">Clip Studio</span>
+          <span class="skill-tag">Blender</span>
+          <span class="skill-tag">HTML & CSS</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Ira L. Barasi | BSIT-NS-2A
+  </footer>
+
 </div>
-
-<div class="content">
-
-  <!-- PROFILE -->
-  <h2 class="block-title">Student Profile</h2>
-  <div class="block-sub">Identity</div>
-
-  <div class="info-grid">
-    <div class="info-card">
-      <div class="info-label">Full Name</div>
-      <div class="info-value">Ira L. Barasi</div>
-    </div>
-    <div class="info-card">
-      <div class="info-label">Program</div>
-      <div class="info-value">BSIT - NS - 2A</div>
-    </div>
-    <div class="info-card">
-      <div class="info-label">Subject</div>
-      <div class="info-value">Multimedia and Authoring</div>
-    </div>
-    <div class="info-card">
-      <div class="info-label">Academic Year</div>
-      <div class="info-value">2025–2026</div>
-    </div>
-  </div>
-
-  <!-- ABOUT SITE -->
-  <h2 class="block-title">About This Site</h2>
-  <div class="block-sub">Context</div>
-
-  <div class="about-body">
-    <p>This website showcases my multimedia projects including rotoscoping and 3D rendering.</p>
-  </div>
-
-  <!-- INTRO -->
-  <h2 class="block-title">Introduction</h2>
-  <div class="block-sub">Overview</div>
-
-  <div class="about-body">
-    <p>
-      I am a second-year BSIT student passionate about blending <strong>technology and creativity</strong>.
-      I enjoy working on animation, video editing, and 3D visualization while improving my skills.
-    </p>
-  </div>
-
-  <!-- TOOLS -->
-  <h2 class="block-title">Tools & Software</h2>
-  <div class="block-sub">Technical Skills</div>
-
-  <div class="skills-list">
-    <span class="skill-tag">After Effects</span>
-    <span class="skill-tag">Clip Studio</span>
-    <span class="skill-tag">Blender</span>
-    <span class="skill-tag">HTML & CSS</span>
-  </div>
-
-  <!-- CONTACT -->
-  <h2 class="block-title">Contact</h2>
-  <div class="block-sub">Get in Touch</div>
-
-  <div class="about-body">
-    <p>Email: irabarasi23@gmail.com</p>
-  </div>
-
-</div>
-
-<footer>
-  © 2026 Ira L. Barasi | BSIT-NS-2A
-</footer>
 
 </body>
 </html>
